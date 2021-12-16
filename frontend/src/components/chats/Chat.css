@@ -1,0 +1,90 @@
+.user_list,
+.chat_list {
+  padding: 0;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  list-style-type: none;
+}
+
+/* ::-webkit-scrollbar {
+  width: 10px;
+} */
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+  background: #888;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+.on-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.on-scrollbar::-webkit-scrollbar-track {
+  box-shadow: black;
+  -webkit-box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.on-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+  background-color: transparent;
+}
+
+.on-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #acacac;
+}
+
+.sent {
+  position: relative;
+  background-color: #18a360;
+  color: #f1f1f1;
+  left: 0;
+  padding-left: 0.625rem;
+  padding-top: 0.125rem;
+  margin: 0.625rem;
+  width: 18.75rem;
+  height: 1.563rem;
+  border-radius: 0.625rem;
+  font-weight: bolder;
+  font-family: "Courier New", Courier, monospace;
+}
+.replies {
+  width: 300px;
+  background-color: #d3d2d296;
+  color: #18a360;
+  position: relative;
+  font-weight: bolder;
+  right: 0;
+  padding-left: 0.625rem;
+  padding-top: 0.125rem;
+  width: 18.75rem;
+  height: 1.563rem;
+  border-radius: 0.625rem;
+  margin: 0.625rem 0.625rem 0.625rem 75%;
+
+  font-family: "Courier New", Courier, monospace;
+}
+.go-chat {
+  color: #f1f1f1;
+  font-weight: bolder;
+  padding: 0.2rem;
+  font-size: 1.2rem;
+  border-radius: 10%;
+  border: none;
+  background-color: #18a360;
+  transition: ease-in 0.1s;
+}
+.go-chat:hover {
+  background-color: #137e4a;
+}

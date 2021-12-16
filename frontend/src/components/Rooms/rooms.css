@@ -1,0 +1,39 @@
+.list {
+  list-style: none;
+  margin: 0.5rem 2rem 1rem 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #d6d7dd81;
+  border-radius: 10px;
+}
+
+.list-rooms {
+  background: #16a663e0;
+  color: white;
+  padding: 1.8rem;
+  margin: 1rem 7rem 0.5rem 7rem;
+  border-radius: 40px;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.list-rooms-h4 {
+  text-transform: uppercase;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.6rem;
+  margin: 1rem 7rem 0.5rem 7rem;
+}
+.list-rooms:active {
+  background: #087944e0;
+  -webkit-box-shadow: inset 0px 0px 5px #1abb70;
+  -moz-box-shadow: inset 0px 0px 5px #1abb70;
+  box-shadow: inset 0px 0px 5px #1abb70;
+  outline: none;
+}
+
+.list-title {
+  font-family: Impact, "Arial Narrow Bold", sans-serif;
+  line-height: 1rem;
+  text-align: center;
+}

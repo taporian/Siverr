@@ -1,0 +1,145 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+.h1-dropdown {
+  font-size: 0.9rem;
+
+  text-align: center;
+  color: #7b7d84;
+}
+
+.h3-dropdown {
+  font-size: 0.9rem;
+  text-align: center;
+  color: #7b7d84;
+}
+
+.h3-dropdown .a-dropdown {
+  color: #7b7d84;
+}
+
+.a-dropdown {
+  cursor: pointer;
+
+  text-decoration: none;
+  color: #7b7d84;
+  width: 100%;
+  font-size: 0.9rem;
+}
+.a-dropdown:hover {
+  color: #7b7d84;
+  border-bottom: 3px solid #1dc172 !important;
+}
+
+.h1-dropdown {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 0.9rem;
+
+  font-family: "Bree Serif", "serif";
+}
+
+#container-dropdown {
+  width: 100% !important;
+  margin: 0 auto;
+}
+
+.p-dropdown {
+  text-align: center;
+}
+
+.nav-dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: initial;
+  z-index: 1030;
+}
+/* .ul-dropdown {
+  box-shadow: 4px 1px 30px 1px #334270c2;
+  border: 1px solid black;
+} */
+
+.nav-dropdown .ul-dropdown {
+  padding: 0;
+  width: 100%;
+  margin: auto;
+
+  list-style: none;
+  position: relative;
+}
+
+.nav-dropdown .ul-dropdown .li-dropdown {
+  display: inline-block;
+}
+
+.nav-dropdown .a-dropdown {
+  /* // remove BLOCK and it wont bounce anymore */
+  display: block;
+  padding: 0 10px;
+  color: #7b7d84;
+  font-size: 0.9rem;
+
+  line-height: 60px;
+  text-decoration: none;
+}
+
+.nav-dropdown .a-dropdown:hover {
+  color: #93949a;
+  border: none;
+
+  /* this is a solution but will crop sub category */
+  max-height: 3.85rem;
+
+  /* background-color: #000000; */
+}
+
+/* Hide Dropdowns by Default */
+.nav-dropdown .ul-dropdown .ul-dropdown {
+  display: none;
+  position: absolute;
+
+  top: 60px; /* the height of the main .nav-dropdown */
+}
+
+/* Display Dropdowns on Hover */
+.nav-dropdown .ul-dropdown .li-dropdown:hover > .ul-dropdown {
+  display: inherit;
+}
+
+/* Fisrt Tier Dropdown */
+.ul-dropdown .ul-dropdown .li-dropdown {
+  width: 200px;
+  float: none;
+  display: list-item;
+  position: relative;
+  z-index: 1000;
+  background-color: #ffffff;
+  border: none !important;
+  box-shadow: 3px 2px 2px -1px #dedfe0, -3px 2px 2px -1px #dedfe0;
+
+  /* border-top: none;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; */
+}
+
+/* Second, Third and more Tiers	*/
+/* .nav-dropdown .ul-dropdown .ul-dropdown .ul-dropdown .li-dropdown {
+  position: relative;
+  top: -60px;
+  left: 170px;
+} */
+
+/* Change this in order to change the Dropdown symbol */
+.li-dropdown > .a-dropdown:after {
+  content: "";
+}
+.li-dropdown > .a-dropdown:only-child:after {
+  content: "";
+}
