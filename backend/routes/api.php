@@ -72,8 +72,14 @@ Route::group(['prefix' => 'users'], function() {
         Route::post('/contactSeller',['App\Http\Controllers\OrderController', 'contactSeller']);
         Route::get('/getroom',['App\Http\Controllers\RoomController', 'getroom']);
         Route::get('/getAllRooms',['App\Http\Controllers\RoomController', 'getAllRooms']);
-
-
+        Route::get('/getAllPendingOrder',['App\Http\Controllers\OrderController', 'getAllPendingOrder']);
+        Route::get('/getAllAcceptedOrder',['App\Http\Controllers\OrderController', 'getAllAcceptedOrder']);
+        Route::get('/getAllRejectedOrder',['App\Http\Controllers\OrderController', 'getAllRejectedOrder']);
+        Route::put('/acceptOrder/{id}',['App\Http\Controllers\OrderController', 'acceptOrder']);
+        Route::put('/rejectOrder/{id}',['App\Http\Controllers\OrderController', 'rejectOrder']);
+        Route::get('/myOrdersPending',['App\Http\Controllers\OrderController', 'myOrdersPending']);
+        Route::get('/myOrdersAccepted',['App\Http\Controllers\OrderController', 'myOrdersAccepted']);
+        Route::get('/myOrdersRejected',['App\Http\Controllers\OrderController', 'myOrdersRejected']);
 
 
     });

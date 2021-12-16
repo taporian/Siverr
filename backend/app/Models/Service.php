@@ -25,9 +25,21 @@ class Service extends Model
 
     ];
 
-    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function orders(): \Illuminate\Database\Eloquent\Relations\hasMany
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class,'service_id','id');
+    }
+    public function ordersPending(): \Illuminate\Database\Eloquent\Relations\hasMany
+    {
+        return $this->hasMany(Order::class,'service_id','id')->where('status_order',0);
+    }
+    public function ordersAccepted(): \Illuminate\Database\Eloquent\Relations\hasMany
+    {
+        return $this->hasMany(Order::class,'service_id','id')->where('status_order',1);
+    }
+    public function ordersRejected(): \Illuminate\Database\Eloquent\Relations\hasMany
+    {
+        return $this->hasMany(Order::class,'service_id','id')->where('status_order',2);
     }
 
     public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -55,6 +55,10 @@ import{
     CONTACT_SELLER_SUCCESS_USER,
     CONTACT_SELLER_FAILED_USER,
 
+    POST_ORDER_REQUEST_USER,
+    POST_ORDER_SUCCESS_USER,
+    POST_ORDER_FAILED_USER,
+
 
     ACCEPTED,
     REJECTED,
@@ -135,7 +139,8 @@ const iniState ={
     errorRooms:"",
     contactData:[],
     contactError:"",
- 
+    postOrderData:[],
+    postOrderError:"",
 };
 
 /////////////////////ADMIN////////////////////////////
@@ -342,6 +347,36 @@ export const fetchAllPendingServiceReducer = (state=iniState,action) =>{
 }
 
 ///////////////////////////USER /////////////////
+
+export const postOrderReducer = (state=iniState,action) =>{
+    switch(action.type){
+        case POST_ORDER_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case POST_ORDER_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                postOrderError:null,    
+                postOrderData:action.payload.postOrderData,
+                
+            };
+        case POST_ORDER_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                postOrderError: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+
 /////////CREATE SERVICE ///////
 
 export const createServiceReducer = (state=iniState,action) =>{

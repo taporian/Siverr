@@ -2,9 +2,10 @@ import React,{useEffect, useState} from 'react'
 import '../Block/Block.css';
 import { useDispatch,useSelector } from "react-redux";
 import { contactSeller } from '../../redux/action-creators';
+import { ErrorPForm } from '../styled/Login.styled';
 export default function Contact({service}) {
 
-    // const  {  contactError } = useSelector((state) =>  state.contactSellerReducer);
+    const  {  contactError } = useSelector((state) =>  state.contactSellerReducer);
     const [contactSellerMessage,SetContactSellerMessage]=useState('');
     const [contactSellerID,SetcontactSellerID]=useState(0);
     
@@ -41,6 +42,8 @@ export default function Contact({service}) {
                   
                     </div>
                     <button className='contact-seller-button' onClick={()=>onSubmit()} >Submit</button>
+                    {console.log(contactError)}
+                    {contactError && <ErrorPForm>{contactError.message_sent}</ErrorPForm>}
                     {/* {console.log('contactError',contactError)}
                     {contactError && contactError} */}
                     </div>

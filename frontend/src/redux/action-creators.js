@@ -68,6 +68,9 @@ import {
     CONTACT_SELLER_SUCCESS_USER,
     CONTACT_SELLER_FAILED_USER,
 
+    POST_ORDER_REQUEST_USER,
+    POST_ORDER_SUCCESS_USER,
+    POST_ORDER_FAILED_USER,
 
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_REQUEST_GUEST,
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_SUCCESS_GUEST,
@@ -565,6 +568,66 @@ export const signOutAdmin = (history) =>{
     };
 }
 /////////////////////////USER//////////////////////////////////////////////////////
+
+////////////POST ORDER /////////
+const postOrderUserRequest = () =>{
+   
+    return{
+        type: POST_ORDER_REQUEST_USER,
+    };
+};
+
+const postOrderUserSuccess = (postOrderData) =>{
+    console.log('postOrderData',postOrderData)
+    return{
+        type: POST_ORDER_SUCCESS_USER,
+        payload: {
+            postOrderData
+        }
+    };
+};
+
+const postOrderUserFailure = (postOrderError) =>{
+   
+    return {
+        type: POST_ORDER_FAILED_USER,
+        payload:postOrderError
+    };
+};
+
+export const postOrder =  (OrderData) =>{
+ 
+    return async function (dispatch) {
+
+        dispatch(postOrderUserRequest());
+    try{
+       const response = await axios.post(URL_User+`/createOrder`,OrderData,
+           {
+            headers:{
+                "Accept":"application/json",
+                Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+            }
+        }
+           
+        );
+        const datas = response.data;
+        console.log('response',response.data)
+        if(response && response.data && response.data.message && response.data.message==="You must be logged in"){  
+            dispatch(signOutUser())
+        }
+        else{
+               
+        dispatch(postOrderUserSuccess(datas));
+        toast.success('Your Order Has Been Sent Check your messages with your provider');
+        }
+                        
+    }catch(postOrderError){
+       console.log('postOrderError',postOrderError.response.data)
+        dispatch(postOrderUserFailure(postOrderError.response.data));
+    }
+     
+    };
+};
 
 
 ///////CREATE SERVICE

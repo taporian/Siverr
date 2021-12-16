@@ -1,36 +1,44 @@
-import React from 'react'
-
+import React,{useState} from 'react'
+import './userDashboard.css';
+import { FaHome } from 'react-icons/fa';
+import { AiFillShopping } from 'react-icons/ai';
+import { BsBasket3Fill } from 'react-icons/bs';
+import {MdAccountCircle} from "react-icons/md";
+import pendingOrder from '../../../assets/svg/pending-order.svg'
 export default function UserDashboard() {
+   const [openPorfile,SetopenProfile]=useState(false);
     return (
         <>
+      
             <div className="s-layout">
 
 <div className="s-layout__sidebar">
-  <a className="s-sidebar__trigger_dashboard" href="#0">
+  <div className="s-sidebar__trigger a-user-dashboard" >
      <i className="fa fa-bars"></i>
-  </a>
+  </div>
 
   <nav className="s-sidebar__nav">
      <ul>
         <li>
-           <a className="s-sidebar__nav-link" href="#0">
-              <i className="fa fa-home"></i><em>Home</em>
-           </a>
+           <div className="s-sidebar__nav-link a-user-dashboard" >
+           <FaHome className="icons-dashboard"/><em className='em-user-dashboard' >Home</em>
+           </div>
         </li>
         <li>
-           <a className="s-sidebar__nav-link" href="#0">
-             <i className="fa fa-user"></i><em>My Profile</em>
-           </a>
+           <div onClick={()=>SetopenProfile(true)} className="s-sidebar__nav-link a-user-dashboard" >
+             <MdAccountCircle className="icons-dashboard"/><em className='em-user-dashboard' >My Profile</em>
+           </div>
         </li>
         <li>
-           <a className="s-sidebar__nav-link" href="#0">
-              <i className="fa fa-camera"></i><em>Camera</em>
-           </a>
+           <div className="s-sidebar__nav-link a-user-dashboard">
+           <AiFillShopping className="icons-dashboard"/><em className='em-user-dashboard'>My Orders</em>
+           {/* <img src={pendingOrder} alt='pending-order' className="icons-dashboard"/><em className='em-user-dashboard'>My Orders</em> */}
+           </div>
         </li>
         <li>
-           <a className="s-sidebar__nav-link" href="#0">
-              <i className="fa fa-camera"></i><em>Camera</em>
-           </a>
+           <div className="s-sidebar__nav-link a-user-dashboard" >
+           <BsBasket3Fill className="icons-dashboard"/><em className='em-user-dashboard'>Orders Recieved</em>
+           </div>
         </li>
      </ul>
   </nav>
@@ -38,7 +46,9 @@ export default function UserDashboard() {
 
 
 <main className="s-layout__content">
-  <h1>Full View, Please!</h1>
+   {console.log(openPorfile)}
+   {openPorfile && <div>My profile </div>}
+ {!openPorfile&& <h1 className='h1-user-dashboard'>Full View, Please!</h1>}
 </main>
 </div>
         </>

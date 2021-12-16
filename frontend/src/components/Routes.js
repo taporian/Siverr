@@ -21,6 +21,7 @@ import Subcategory from "../pages/Subcategory/Subcategory";
 import Service from "../pages/Service/Service";
 import Chat from "./chats/Chat";
 import Rooms from "./Rooms/Rooms";
+import UserDashboard from "../pages/User/UserDashboard/UserDashboard";
 
 export default function Routes(){
     const { access_token } = useSelector((state) => state.authenticationReducer );   // IF I REMOVE THIS IT WON'T REDIRECT ME
@@ -49,7 +50,8 @@ export default function Routes(){
                     
                         <Route path="/" component={Home} exact token={tokenUser}/>
                         <PrivateRouteUser path="/room" component={Rooms} exact token={tokenUser}/>
-                        <PrivateRouteUser exact path='/chat' component={Chat} token={tokenUser} />   
+                        <PrivateRouteUser exact path='/chat' component={Chat} token={tokenUser} /> 
+                        <PrivateRouteUser exact path='/dashboard' component={UserDashboard} token={tokenUser} />     
                      
                         <PrivateRouteAdmin path="/admin/home" component={AdminDashboard} exact token={tokenAdmin}/>
                         <PrivateRouteAdmin path="/admin/home2" component={AdminDashboard2} exact token={tokenAdmin}/>

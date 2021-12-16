@@ -17,6 +17,7 @@ import {authenticationReducer,
   fetchIllustratorDataGuestReducer,
   fetchAllRoomsUserReducer,
   contactSellerReducer,
+  postOrderReducer,
 } from "./reducer";
 
 const createRootReducer = () =>
@@ -36,7 +37,7 @@ combineReducers({
   fetchIllustratorDataGuestReducer,
   fetchAllRoomsUserReducer,
   contactSellerReducer,
-
+  postOrderReducer,
 });
 
 const initState = {
@@ -116,6 +117,11 @@ const initState = {
       loading:false,
       contactData:[],
       contactError:"",
+    },
+    postOrderReducer:{
+      loading:false,
+      postOrderData:[],
+      postOrderError:"",
     }
   
     

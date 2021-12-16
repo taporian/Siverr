@@ -108,7 +108,7 @@ const SignupUser = () => {
       </Col25>
       <Col25>
         <InputFormTxt type="password" {...register("password")} />
-        <ErrorPForm>{errors.pawword?.message}</ErrorPForm>
+        <ErrorPForm>{errors.password?.message}</ErrorPForm>
         <ErrorPForm>{error && error.pawword}</ErrorPForm>
       </Col25>
     </Row>

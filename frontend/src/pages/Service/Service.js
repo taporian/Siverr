@@ -9,11 +9,13 @@ import HomecardGraphics from '../../components/Card/HomecardGraphics';
 import Homecard from '../../components/Card/Homecard';
 import { Container } from '../../components/styled/Home.styled';
 import HomecardService from '../../components/Card/HomecardService';
+import Order from '../../components/Order/Order';
 export default function Service() {
     const {id} = useParams();
     const  {  errorDataGuest,services } = useSelector((state) =>  state.fetchAllDataGuestReducer);
     const [service,Setservice]=useState('');
-    const [buttonPopup,setButtonPopup] = useState(false);
+    const [buttonPopupContact,setButtonPopupContact] = useState(false);
+    const [buttonPopupOrder,setButtonPopupOrder] = useState(false);
     
 
 
@@ -56,18 +58,23 @@ export default function Service() {
                 <div className='checkout-price-right'>
                 {'$'+service.price}
                 </div>
-                <button className='checkout-button-right'>Continue {'($'+service.price+')'}</button>
+                <button className='checkout-button-right' onClick={()=>setButtonPopupOrder(true)} >Continue {'($'+service.price+')'}</button>
                 </div>
                 <div className='contact-seller-container-right'>
-                <button onClick={()=>setButtonPopup(true)} className='contact-seller-button-right'>Contact Seller</button>
+                <button onClick={()=>setButtonPopupContact(true)} className='contact-seller-button-right'>Contact Seller</button>
                 
                 </div>
             </div>      
         </div>
-        <Popup  trigger={buttonPopup} setTrigger={setButtonPopup}  >
+        <Popup  trigger={buttonPopupContact} setTrigger={setButtonPopupContact}  >
            <Contact service={service}/>  
             </Popup> 
+
+            <Popup  trigger={buttonPopupOrder} setTrigger={setButtonPopupOrder}  >
+           <Order service={service}/>  
+            </Popup> 
             <Container style={{'margin-right':'auto'}}>
+                
             {services && services.length>0 && services.sort(() => 0.5 - Math.random()).slice(0,2).map(guest => (      
          <>
         

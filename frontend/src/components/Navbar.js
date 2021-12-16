@@ -52,9 +52,10 @@ const Navbar = () => {
        
         {currentUser !=null ? (
           <DropButton>
-            <DropdownButton  bg= "#16a663e0" id="dropdown-basic-button"  title={`${currentUser}`}>
+            {/* ${currentUser.charAt(0).toUpperCase()} */}
+            <DropdownButton id="dropdown-basic-button"  title={`${currentUser}`}>
           <Dropdown.Item href="/" onClick={handleSignOut}>Sign Out</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Manage</Dropdown.Item>
+          <Dropdown.Item href="/dashboard">Manage Orders</Dropdown.Item>
           <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
           </DropdownButton>
            

@@ -177,3 +177,10 @@
 .contact-seller-button:hover {
   background-color: #4da169;
 }
+
+/* ///////////////////ORDER /////////// */
+
+.h6-order {
+  font-size: medium;
+  color: rgb(40, 107, 87);
+}

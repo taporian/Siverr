@@ -20,6 +20,7 @@ export const DropButton = styled.div`
 
   background-color:#16A663;
   border:none;
+ 
   transition:ease-in 0.2;
   &:hover{
     background-color:#3EB074;
