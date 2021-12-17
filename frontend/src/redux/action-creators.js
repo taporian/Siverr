@@ -72,6 +72,10 @@ import {
     POST_ORDER_SUCCESS_USER,
     POST_ORDER_FAILED_USER,
 
+    GET_MY_ORDER_PENDING_REQUEST_USER,
+    GET_MY_ORDER_PENDING_SUCCESS_USER,
+    GET_MY_ORDER_PENDING_FAILED_USER,
+
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_REQUEST_GUEST,
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_SUCCESS_GUEST,
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_FAILED_GUEST,
@@ -568,6 +572,70 @@ export const signOutAdmin = (history) =>{
     };
 }
 /////////////////////////USER//////////////////////////////////////////////////////
+
+
+///////////////GET ALL MY PENDING ORDER /////////
+
+const fetchAllMyPendingOrderUserRequest = () =>{
+    return{
+        type: GET_MY_ORDER_PENDING_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllMyPendingOrderUserSucces = (myPendingOrderData) =>{
+    
+    return{
+        type: GET_MY_ORDER_PENDING_SUCCESS_USER,
+        payload: {
+            myPendingOrderData
+        }
+    };
+};
+
+const fetchAllMyPendingOrderUserFailure = (errorMyPendingOrder) =>{
+    return {
+        type: GET_MY_ORDER_PENDING_FAILED_USER,
+        payload:errorMyPendingOrder
+    };
+};
+
+export const fetchAllMyPendingOrderUser = () =>{
+       
+    return async function (dispatch) {
+        dispatch(fetchAllMyPendingOrderUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/myOrdersPending',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;         
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllMyPendingOrderUserSucces(result));
+              
+                }
+              
+               
+                       
+                
+        }catch(errorMyPendingOrder){
+           
+                dispatch(fetchAllMyPendingOrderUserFailure(errorMyPendingOrder.response.data));
+                
+        }
+    };
+};
 
 ////////////POST ORDER /////////
 const postOrderUserRequest = () =>{

@@ -58,7 +58,8 @@ const dispatch = useDispatch();
          setButtonPopup(true);
          sePopData(serviceList);
        
-    }}>{serviceList.user && serviceList.user.name}</ButtonInvisible></Table.TH> 
+    }}>
+      {serviceList.user && serviceList.user.name}</ButtonInvisible></Table.TH> 
 
 
       <Table.TH>{serviceList.title}</Table.TH>

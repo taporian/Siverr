@@ -35,7 +35,7 @@ export default function Order({service}) {
       }, []);
     
     
-
+console.log('order service',service);
     const onSubmit=  (d)=>{
        
         const body={
@@ -45,7 +45,7 @@ export default function Order({service}) {
             price:price,
             service_id:service_id,
         }
-            console.log(body)
+          console.log('body order',body)
         dispatch(postOrder(body));
     }
     return (

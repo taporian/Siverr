@@ -11,14 +11,14 @@
   margin: 1.2rem;
   font-size: 1.5rem;
 }
+.icons-arrow {
+  margin: 0.2rem;
+}
 
 .a-user-dashboard {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-}
-.a-user-dashboard:hover {
-  color: rgb(235, 46, 46) !important;
 }
 
 /* Layout */

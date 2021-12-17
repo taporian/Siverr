@@ -10,11 +10,11 @@ class Order extends Model
     use HasFactory;
 public function users(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class,'user_id','id');
 }
     public function services(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(Service::class,'service_id','id');
     }
 
     protected $fillable = [

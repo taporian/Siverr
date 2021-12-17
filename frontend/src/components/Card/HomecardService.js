@@ -1,10 +1,11 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 import { URL_Image } from '../URL';
 import './homecard.css';
 
 export default function HomecardService({services}) {
   
-
+const history = useHistory()
     
     return (
         <>
@@ -17,8 +18,13 @@ export default function HomecardService({services}) {
   {console.log(services)}
  
   <div className="home-card-info">   
-  <a  className='home-a' href={`${services.category.name.replace(/\s+/g, '-')+'/'+services.subcategory.name.replace(/\s+/g, '-')+'/'+services.title.replace(/\s+/g, '-')+'/'+services.id}`} >
-      <p className="home-title">{services.title}</p></a>
+  <a  className='home-a'  >
+      <p className="home-title" onClick={()=>history.push({
+            pathname : `/`,
+            state :{
+              redirect:services.category.name.replace(/\s+/g, '-')+'/'+services.subcategory.name.replace(/\s+/g, '-')+'/'+services.title.replace(/\s+/g, '-')+'/'+services.id,
+            }
+            })}>{services.title}</p></a>
   <p className="home-price"><span className='home-span'>STARTING AT</span> ${services.price}</p>
  
   </div>
@@ -28,3 +34,4 @@ export default function HomecardService({services}) {
     )
         
 }
+// href={`${services.category.name.replace(/\s+/g, '-')+'/'+services.subcategory.name.replace(/\s+/g, '-')+'/'+services.title.replace(/\s+/g, '-')+'/'+services.id}`}

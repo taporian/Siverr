@@ -80,6 +80,7 @@ Route::group(['prefix' => 'users'], function() {
         Route::get('/myOrdersPending',['App\Http\Controllers\OrderController', 'myOrdersPending']);
         Route::get('/myOrdersAccepted',['App\Http\Controllers\OrderController', 'myOrdersAccepted']);
         Route::get('/myOrdersRejected',['App\Http\Controllers\OrderController', 'myOrdersRejected']);
+        Route::post('/createComment',['App\Http\Controllers\CommentController', 'createComment']);
 
 
     });

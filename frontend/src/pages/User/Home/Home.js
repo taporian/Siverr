@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { slideImageheader,slideImageCourses } from '../../../components/SlideShow/slideImages';
 import Slideshow from '../../../components/SlideShow/Slideshow';
 import { Container, Box, BoxTitle, BoxText,BoxHeader,Homebutton ,H4} from '../../../components/styled/Home.styled';
 import { useSelector } from 'react-redux';
 import Homecard from '../../../components/Card/Homecard';
 import HomecardGraphics from '../../../components/Card/HomecardGraphics';
+import { useHistory } from 'react-router-dom';
 
 
-export default function Home() {
+export default function Home(props) {
+  // const redirect = props.location.state.redirect;
+  const [redirect,setRedirect] = useState("");
+  const history = useHistory();
    const  {  errorDataGuest,services } = useSelector((state) =>  state.fetchAllDataGuestReducer);
    const  {  errorIllustratorDataGuest, guestIllustratorData } = useSelector((state) =>  state.fetchIllustratorDataGuestReducer);
     const lorem =
@@ -41,6 +45,20 @@ const data = [
       bgColor: "#9FEACD"
     }
   ];
+
+  useEffect(()=>{
+    if(props.location.state?.redirect){
+      setRedirect(props.location.state.redirect)
+    }
+  },[])
+
+  useEffect(()=>{
+    // console.log({redirect})
+    if(redirect){
+      history.push(`${redirect}`)
+    }
+  },[redirect])
+
     return (
       <>
       

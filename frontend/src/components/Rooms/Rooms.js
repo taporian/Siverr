@@ -11,7 +11,6 @@ export default function Rooms() {
     const history = useHistory();
  
     const handleMessages = (value)=>{
-        console.log({value})
         history.push({
             pathname : `/chat`,
             state :{

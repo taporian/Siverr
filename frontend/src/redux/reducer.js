@@ -59,6 +59,10 @@ import{
     POST_ORDER_SUCCESS_USER,
     POST_ORDER_FAILED_USER,
 
+    GET_MY_ORDER_PENDING_REQUEST_USER,
+    GET_MY_ORDER_PENDING_SUCCESS_USER,
+    GET_MY_ORDER_PENDING_FAILED_USER,
+
 
     ACCEPTED,
     REJECTED,
@@ -141,6 +145,8 @@ const iniState ={
     contactError:"",
     postOrderData:[],
     postOrderError:"",
+    myPendingOrderData:[],
+    errorMyPendingOrder:"",
 };
 
 /////////////////////ADMIN////////////////////////////
@@ -347,6 +353,38 @@ export const fetchAllPendingServiceReducer = (state=iniState,action) =>{
 }
 
 ///////////////////////////USER /////////////////
+
+////////////GET ALL MY PENDING ORDER ///////////////
+
+export const fetchAllMyPendingOrderUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_MY_ORDER_PENDING_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_MY_ORDER_PENDING_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                errorMyPendingOrder:null,       
+                myPendingOrderData:action.payload
+            };
+        case GET_MY_ORDER_PENDING_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                myPendingOrderData: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+////////////////////POST ORDER ////////////////
 
 export const postOrderReducer = (state=iniState,action) =>{
     switch(action.type){

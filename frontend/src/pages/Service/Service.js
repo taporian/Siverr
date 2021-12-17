@@ -37,7 +37,7 @@ export default function Service() {
         <>
       
         <div className='service-container' >
-                {console.log('services',services)}
+               
             <div className='service-left-inner'>
            <div className='service-left-title'> {service.title}</div>
            <h6 className='service-left-h6'>{service && service.user.name}</h6>

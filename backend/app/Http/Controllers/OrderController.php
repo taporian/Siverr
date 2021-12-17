@@ -21,6 +21,9 @@ class OrderController extends Controller
    {
        try{
            $inputs = $request->all();
+//           return response()->json([
+//               'data'=>$inputs,
+//           ]);
            if($inputs['user_id'] != $inputs['user_id_service']){
 //
                $check_room_exists = Room::
@@ -282,7 +285,7 @@ class OrderController extends Controller
      */
 public function myOrdersPending(): JsonResponse
 {
-        $myOrdersPending = Order::where([['user_id',auth('user')->user()->id],['status_order',0]])->get();
+        $myOrdersPending = Order::where([['user_id',auth('user')->user()->id],['status_order',0]])->with('services.user')->get();
         if($myOrdersPending)
         {
             return response()->json([
@@ -301,7 +304,7 @@ public function myOrdersPending(): JsonResponse
 
     public function myOrdersAccepted(): JsonResponse
     {
-        $myOrdersAccepted = Order::where([['user_id',auth('user')->user()->id],['status_order',1]])->get();
+        $myOrdersAccepted = Order::where([['user_id',auth('user')->user()->id],['status_order',1]])->with('services.user')->get();
         if($myOrdersAccepted)
         {
             return response()->json([
@@ -319,7 +322,7 @@ public function myOrdersPending(): JsonResponse
     }
     public function myOrdersRejected(): JsonResponse
     {
-        $myOrdersRejected = Order::where([['user_id',auth('user')->user()->id],['status_order',2]])->get();
+        $myOrdersRejected = Order::where([['user_id',auth('user')->user()->id],['status_order',2]])->with('services.user')->get();
         if($myOrdersRejected)
         {
             return response()->json([

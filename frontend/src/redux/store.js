@@ -18,6 +18,7 @@ import {authenticationReducer,
   fetchAllRoomsUserReducer,
   contactSellerReducer,
   postOrderReducer,
+  fetchAllMyPendingOrderUserReducer,
 } from "./reducer";
 
 const createRootReducer = () =>
@@ -38,6 +39,7 @@ combineReducers({
   fetchAllRoomsUserReducer,
   contactSellerReducer,
   postOrderReducer,
+  fetchAllMyPendingOrderUserReducer,
 });
 
 const initState = {
@@ -122,6 +124,12 @@ const initState = {
       loading:false,
       postOrderData:[],
       postOrderError:"",
+    },
+    fetchAllMyPendingOrderUserReducer:
+    {
+      loading:false,
+      myPendingOrderData:[],
+      errorMyPendingOrder:"",
     }
   
     
