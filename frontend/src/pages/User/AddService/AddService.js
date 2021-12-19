@@ -7,7 +7,7 @@ import { Container,Row,Col25,InputFormTxt,LabelForm,InputFormSub,ErrorPForm, Tex
 import 'react-dropdown/style.css';
 import Input from '../../../components/Input';
 import { fetchAllCategoryUser,fetchSubcategoryByCategoryID,createService ,emptySubcategory} from '../../../redux/action-creators';
-import Select from "../../../components/Select"
+import Select from "../../../components/Select/Select"
 
 export default function AddService() {
 
@@ -114,9 +114,11 @@ export default function AddService() {
           }
        
     return (
+      <>
+      <br/>
         <Container>
     
-
+         
             <Select  
             isDisabled={categoryInput  !==''}
             defaultValue={categoryId}
@@ -168,7 +170,7 @@ export default function AddService() {
     )}
     </Select>
 
-{console.log('createServiceError',createServiceError)}
+
   <form onSubmit={handleSubmit(onSubmit)}>
     <Row>
     <Row>
@@ -252,5 +254,6 @@ export default function AddService() {
     </Row>
   </form>
 </Container>
+</>
     )
 }

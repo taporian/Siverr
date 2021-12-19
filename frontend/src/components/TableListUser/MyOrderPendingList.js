@@ -1,9 +1,9 @@
 import React from 'react'
 import { Table } from '../TableUser'
-export default function MyOrderPendingList({myOrderPendingData}) {
+export default function MyOrderPendingList({myOrderPendingData,ErrormyOrderPending}) {
     return (
        <>
-       {console.log('myOrderPendingData',myOrderPendingData)}
+       {!ErrormyOrderPending ? 
        <Table key={0}>
    <Table.Head>
      <Table.TR >
@@ -31,6 +31,21 @@ export default function MyOrderPendingList({myOrderPendingData}) {
   
  
   </Table>
+  :
+  <>
+  <Table key={0}>
+ <Table.Head>
+ <Table.TR >
+   <Table.TH  >Message</Table.TH>
+   </Table.TR>
+</Table.Head>
+<Table.TR> 
+ <Table.TH  >{ErrormyOrderPending.message}</Table.TH>
+ </Table.TR> 
+ </Table>
+
+ </>
+}
        </>
     )
 }

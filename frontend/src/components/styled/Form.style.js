@@ -13,7 +13,8 @@ width: 100%;
 
 `
 export const InputFormSub = styled.input`
-background-color: #3d3737;
+
+background-color: #5abb7a;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -21,7 +22,7 @@ background-color: #3d3737;
   cursor: pointer;
   float: right;
   &:hover {
-    background-color: #4f4949;
+    background-color: #4da169;
             }
             @media  (max-width: 600px) {
     width: 100%;

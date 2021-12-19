@@ -184,3 +184,15 @@
   font-size: medium;
   color: rgb(40, 107, 87);
 }
+.service-order-button {
+  background-color: #5abb7a;
+  color: white;
+  transition: ease 0.2s;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+
+.service-order-button:hover {
+  background-color: #4da169;
+}

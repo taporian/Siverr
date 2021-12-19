@@ -63,6 +63,37 @@ import{
     GET_MY_ORDER_PENDING_SUCCESS_USER,
     GET_MY_ORDER_PENDING_FAILED_USER,
 
+    GET_MY_ORDER_ACCEPTED_REQUEST_USER,
+    GET_MY_ORDER_ACCEPTED_SUCCESS_USER,
+    GET_MY_ORDER_ACCEPTED_FAILED_USER,
+
+    GET_MY_ORDER_REJECTED_REQUEST_USER,
+    GET_MY_ORDER_REJECTED_SUCCESS_USER,
+    GET_MY_ORDER_REJECTED_FAILED_USER,
+
+    GET_RECEIVED_ORDER_PENDING_REQUEST_USER,
+    GET_RECEIVED_ORDER_PENDING_SUCCESS_USER,
+    GET_RECEIVED_ORDER_PENDING_FAILED_USER,
+
+    GET_RECEIVED_ORDER_ACCEPTED_REQUEST_USER,
+    GET_RECEIVED_ORDER_ACCEPTED_SUCCESS_USER,
+    GET_RECEIVED_ORDER_ACCEPTED_FAILED_USER,
+
+    GET_RECEIVED_ORDER_REJECTED_REQUEST_USER,
+    GET_RECEIVED_ORDER_REJECTED_SUCCESS_USER,
+    GET_RECEIVED_ORDER_REJECTED_FAILED_USER,
+
+    POST_ACCEPT_ORDER_REQUEST_USER,
+    POST_ACCEPT_ORDER_SUCCESS_USER,
+    POST_ACCEPT_ORDER_FAILED_USER,
+
+    POST_REJECT_ORDER_REQUEST_USER,
+    POST_REJECT_ORDER_SUCCESS_USER,
+    POST_REJECT_ORDER_FAILED_USER,
+
+    POST_COMMENT_REQUEST_USER,
+    POST_COMMENT_SUCCESS_USER,
+    POST_COMMENT_FAILED_USER,
 
     ACCEPTED,
     REJECTED,
@@ -90,6 +121,10 @@ import{
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_REQUEST_GUEST,
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_SUCCESS_GUEST,
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_FAILED_GUEST, 
+
+    GET_COMMENT_REQUEST_GUEST,
+    GET_COMMENT_SUCCESS_GUEST,
+    GET_COMMENT_FAILED_GUEST,
 
 
 } from './action-types';
@@ -147,9 +182,32 @@ const iniState ={
     postOrderError:"",
     myPendingOrderData:[],
     errorMyPendingOrder:"",
+    myAcceptedOrderData:[],
+    errorMyAcceptedOrder:"",
+    myRejectedOrderData:[],
+    errorMyRejectedOrder:"",
+    receivedPendingOrderData:[],
+    errorRecievedPendingOrder:"",
+    receivedAcceptedOrderData:[],
+    errorRecievedAcceptedOrder:"",
+    errorRecievedRejectedOrder:"",
+      receivedRejectedOrderData:[],
+      acceptOrderData:[],
+      ErroracceptOrder:"",
+      rejectOrderData:[],
+      ErrorRejectOrder:"",
+      commentsData:[],
+      ErrorGetComments:"",
+      ErrorComment:"",    
+      commentData:[],
+     
+
+
 };
 
 /////////////////////ADMIN////////////////////////////
+
+
 
 //////////////ACCEPT SERVICE //////////////
 
@@ -352,7 +410,254 @@ export const fetchAllPendingServiceReducer = (state=iniState,action) =>{
     }
 }
 
-///////////////////////////USER /////////////////
+///////////////////////////USER ////////////////////////////////////////////////////////////////////////////
+
+//////////////POST COMMENT /////////////////////////
+
+export const postCommentUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+        case POST_COMMENT_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case POST_COMMENT_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                ErrorComment:null,    
+                commentData:action.payload.commentData,
+                
+            };
+        case POST_COMMENT_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                commentData:null,
+                ErrorComment: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+////////////POST REJECT ORDER ////////////////////////
+
+export const rejectOrderUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+        case POST_REJECT_ORDER_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case POST_REJECT_ORDER_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                ErrorRejectOrder:null,    
+                rejectOrderData:action.payload.rejectOrderData,
+                
+            };
+        case POST_REJECT_ORDER_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                ErrorRejectOrder: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+//////////POST ACCEPT ORDER /////////////////
+
+export const acceptOrderUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+        case POST_ACCEPT_ORDER_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case POST_ACCEPT_ORDER_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                ErroracceptOrder:null,    
+                acceptOrderData:action.payload.acceptOrderData,
+                
+            };
+        case POST_ACCEPT_ORDER_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                ErroracceptOrder: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+///////////////GET ALL RECEIVED REJECTED ORDER ///////////////////
+
+export const fetchAllRecievedRejectedOrderUserReducer = (state=iniState,action) =>{
+   
+    switch(action.type){
+      
+        case GET_RECEIVED_ORDER_REJECTED_REQUEST_USER:
+          
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_RECEIVED_ORDER_REJECTED_SUCCESS_USER:
+           
+           
+            return{
+                ...state,
+                loading:false,
+                errorRecievedRejectedOrder:null,       
+                receivedRejectedOrderData:action.payload
+            };
+        case GET_RECEIVED_ORDER_REJECTED_FAILED_USER:
+           
+           
+            return{
+                ...state,
+                loading:false,
+                errorRecievedRejectedOrder: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+//////////////GET ALL RECEIVED ACCEPTED ORDER ////////////////
+
+export const fetchAllRecievedAcceptedOrderUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_RECEIVED_ORDER_ACCEPTED_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_RECEIVED_ORDER_ACCEPTED_SUCCESS_USER:
+          
+            return{
+                ...state,
+                loading:false,
+                errorRecievedAcceptedOrder:null,       
+                receivedAcceptedOrderData:action.payload
+            };
+        case GET_RECEIVED_ORDER_ACCEPTED_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                errorRecievedAcceptedOrder: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+///////////GET ALL RECEIVED  PENDING ORDER //////////////
+
+export const fetchAllRecievedPendingOrderUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_RECEIVED_ORDER_PENDING_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_RECEIVED_ORDER_PENDING_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                errorRecievedPendingOrder:null,       
+                receivedPendingOrderData:action.payload
+            };
+        case GET_RECEIVED_ORDER_PENDING_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                errorRecievedPendingOrder: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+///////////GET ALL MY REJECTED ORDER ///////////////
+
+export const fetchAllMyRejectedOrderUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_MY_ORDER_REJECTED_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_MY_ORDER_REJECTED_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                errorMyRejectedOrder:null,       
+                myRejectedOrderData:action.payload
+            };
+        case GET_MY_ORDER_REJECTED_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                errorMyRejectedOrder: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+///////////GET ALL MY ACCEPTED ORDER ///////////////
+
+export const fetchAllMyAcceptedOrderUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_MY_ORDER_ACCEPTED_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_MY_ORDER_ACCEPTED_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                errorMyAcceptedOrder:null,       
+                myAcceptedOrderData:action.payload
+            };
+        case GET_MY_ORDER_ACCEPTED_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                errorMyAcceptedOrder: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
 
 ////////////GET ALL MY PENDING ORDER ///////////////
 
@@ -377,7 +682,7 @@ export const fetchAllMyPendingOrderUserReducer = (state=iniState,action) =>{
             return{
                 ...state,
                 loading:false,
-                myPendingOrderData: action.payload
+                errorMyPendingOrder: action.payload
             };
             default:
                 return{...state};
@@ -691,7 +996,39 @@ export const authenticationReducer = (state=iniState,action) =>{
                             return{state};       
     }
 };
-//////////////////////////GUEST///////////////////////
+//////////////////////////GUEST///////////////////////////////////////////////////////////
+
+/////////////////GET COMMENTS /////////////////////////
+
+export const getCommentsGuestReducer = (state=iniState,action) =>{
+    switch(action.type){
+        case GET_COMMENT_REQUEST_GUEST:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_COMMENT_SUCCESS_GUEST:
+           
+            return{
+                ...state,
+                loading:false,
+                ErrorGetComments:null,    
+                commentsData:action.payload
+                
+            };
+        case GET_COMMENT_FAILED_GUEST:
+            return{
+                ...state,
+                loading:false,
+                commentsData:null,
+                ErrorGetComments: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
 
 ////////////FETCH ALL DATA GUESTT ////////////////
 export const fetchAllDataGuestReducer = (state=iniState,action) =>{

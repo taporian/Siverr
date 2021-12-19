@@ -76,6 +76,38 @@ import {
     GET_MY_ORDER_PENDING_SUCCESS_USER,
     GET_MY_ORDER_PENDING_FAILED_USER,
 
+    GET_MY_ORDER_ACCEPTED_REQUEST_USER,
+    GET_MY_ORDER_ACCEPTED_SUCCESS_USER,
+    GET_MY_ORDER_ACCEPTED_FAILED_USER,
+
+    GET_MY_ORDER_REJECTED_REQUEST_USER,
+    GET_MY_ORDER_REJECTED_SUCCESS_USER,
+    GET_MY_ORDER_REJECTED_FAILED_USER,
+
+    GET_RECEIVED_ORDER_PENDING_REQUEST_USER,
+    GET_RECEIVED_ORDER_PENDING_SUCCESS_USER,
+    GET_RECEIVED_ORDER_PENDING_FAILED_USER,
+
+    GET_RECEIVED_ORDER_ACCEPTED_REQUEST_USER,
+    GET_RECEIVED_ORDER_ACCEPTED_SUCCESS_USER,
+    GET_RECEIVED_ORDER_ACCEPTED_FAILED_USER,
+
+    GET_RECEIVED_ORDER_REJECTED_REQUEST_USER,
+    GET_RECEIVED_ORDER_REJECTED_SUCCESS_USER,
+    GET_RECEIVED_ORDER_REJECTED_FAILED_USER,
+
+    POST_ACCEPT_ORDER_REQUEST_USER,
+    POST_ACCEPT_ORDER_SUCCESS_USER,
+    POST_ACCEPT_ORDER_FAILED_USER,
+
+    POST_REJECT_ORDER_REQUEST_USER,
+    POST_REJECT_ORDER_SUCCESS_USER,
+    POST_REJECT_ORDER_FAILED_USER,
+
+    POST_COMMENT_REQUEST_USER,
+    POST_COMMENT_SUCCESS_USER,
+    POST_COMMENT_FAILED_USER,
+
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_REQUEST_GUEST,
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_SUCCESS_GUEST,
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_FAILED_GUEST,
@@ -84,6 +116,10 @@ import {
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_REQUEST_GUEST,
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_SUCCESS_GUEST,
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_FAILED_GUEST, 
+
+    GET_COMMENT_REQUEST_GUEST,
+    GET_COMMENT_SUCCESS_GUEST,
+    GET_COMMENT_FAILED_GUEST,
 
 } from './action-types';
 
@@ -121,7 +157,7 @@ const rejectServiceFailureAdmin = (rejectServiceDataError) =>{
 export const rejectServiceAdmin =  (reason_for_rejection,service_id) =>{
    
     return async function (dispatch) {
-console.log('reason_for_rejection',reason_for_rejection)
+
         dispatch(rejectServiceRequestAdmin());
     try{
        const response = await axios({
@@ -181,7 +217,7 @@ const accepteServiceFailureAdmin = (acceptedServiceDataError) =>{
 };
 
 export const acceptServiceAdmin =  (service_id) =>{
-   console.log('hey')
+  
     return async function (dispatch) {
 
         dispatch(accepteServiceRequestAdmin());
@@ -571,8 +607,562 @@ export const signOutAdmin = (history) =>{
        
     };
 }
-/////////////////////////USER//////////////////////////////////////////////////////
+/////////////////////////USER///////////////////////////////////////////////////////////////////////////////////
 
+
+////////////POST COMMENT ////////////////////////
+const postCommentRequestUser = () =>{
+    
+    return{
+        type: POST_COMMENT_REQUEST_USER,
+    };
+};
+
+const postCommentSuccessUser = (commentData) =>{
+    return{
+        type: POST_COMMENT_SUCCESS_USER,
+        payload: {
+            commentData
+        }
+    };
+};
+
+const postCommentFailureUser = (ErrorComment) =>{
+   
+    return {
+        type: POST_COMMENT_FAILED_USER,
+        payload:ErrorComment
+    };
+};
+
+export const postCommentUser =  (comment_data) =>{
+  
+    return async function (dispatch) {
+
+        dispatch(postCommentRequestUser());
+    try{
+       const response = await axios({
+            method:"post",
+            url: URL_User+`/createComment`,
+            data:comment_data,
+            headers:{
+                "Content-type":"application/json",
+                "Accept":"application/json",
+                Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+            }
+        });
+
+        const data = response.data;
+        if(response.data.message==="You must be logged"){  
+            dispatch(signOutUser())
+        }
+        else{
+            
+        dispatch(postCommentSuccessUser(data));
+
+        }
+                        
+    }catch(ErrorComment){
+     
+        dispatch(postCommentFailureUser(ErrorComment.response.data));
+    }
+     
+    };
+};
+
+
+////////////POST REJECT ORDER ////////////////////////
+const rejectOrderRequestUser = () =>{
+    
+    return{
+        type: POST_REJECT_ORDER_REQUEST_USER,
+    };
+};
+
+const rejectOrderSuccessUser = (rejectOrderData) =>{
+    return{
+        type: POST_REJECT_ORDER_SUCCESS_USER,
+        payload: {
+            rejectOrderData
+        }
+    };
+};
+
+const rejectOrderFailureUser = (ErrorRejectOrder) =>{
+   
+    return {
+        type: POST_REJECT_ORDER_FAILED_USER,
+        payload:ErrorRejectOrder
+    };
+};
+
+export const rejectOrderUser =  (rejectOrder_id) =>{
+  
+    return async function (dispatch) {
+
+        dispatch(rejectOrderRequestUser());
+    try{
+       const response = await axios({
+            method:"put",
+            url: URL_User+`/rejectOrder/${rejectOrder_id}`,
+            headers:{
+                "Content-type":"application/json",
+                "Accept":"application/json",
+                Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+            }
+        });
+
+        const data = response.data;
+        if(response.data.message==="You must be logged"){  
+            dispatch(signOutUser())
+        }
+        else{
+            toast.success('Order Rejected');
+        dispatch(rejectOrderSuccessUser(data));
+
+        }
+                        
+    }catch(ErrorRejectOrder){
+     
+        dispatch(rejectOrderFailureUser(ErrorRejectOrder));
+    }
+     
+    };
+};
+
+////////////POST ACCEPT ORDER ////////////////////////
+const acceptOrderRequestUser = () =>{
+    
+    return{
+        type: POST_ACCEPT_ORDER_REQUEST_USER,
+    };
+};
+
+const acceptOrderSuccessUser = (acceptOrderData) =>{
+    return{
+        type: POST_ACCEPT_ORDER_SUCCESS_USER,
+        payload: {
+            acceptOrderData
+        }
+    };
+};
+
+const acceptOrderFailureUser = (ErroracceptOrder) =>{
+   
+    return {
+        type: POST_ACCEPT_ORDER_FAILED_USER,
+        payload:ErroracceptOrder
+    };
+};
+
+export const acceptOrderUser =  (acceptOrderData) =>{
+  
+    return async function (dispatch) {
+
+        dispatch(acceptOrderRequestUser());
+    try{
+       const response = await axios({
+            method:"put",
+            url: URL_User+`/acceptOrder`,
+            data:acceptOrderData,
+            headers:{
+                "Content-type":"application/json",
+                "Accept":"application/json",
+                Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+            }
+        });
+
+        const data = response.data;
+        if(response.data.message==="You must be logged"){  
+            dispatch(signOutUser())
+        }
+        else{
+            toast.success('Order Accepted');
+        dispatch(acceptOrderSuccessUser(data));
+        // dispatch(fetchAllRecievedPendingOrderUser())
+
+        }
+                        
+    }catch(ErroracceptOrder){
+     
+        dispatch(acceptOrderFailureUser(ErroracceptOrder));
+    }
+     
+    };
+};
+
+
+//////////////GET ALL RECEIVED REJECTED ORDER /////////////
+
+const fetchAllRecievedRejectedOrderUserRequest = () =>{
+    return{
+        type: GET_RECEIVED_ORDER_REJECTED_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllRecievedRejectedOrderUserSuccess = (receivedRejectedOrderData) =>{
+    
+    return{
+        type: GET_RECEIVED_ORDER_REJECTED_SUCCESS_USER,
+        payload: {
+            receivedRejectedOrderData
+        }
+    };
+};
+
+const fetchAllRecievedRejectedOrderUserFailure = (errorRecievedRejectedOrder) =>{
+
+ 
+    return {
+        type: GET_RECEIVED_ORDER_REJECTED_FAILED_USER,
+        payload:errorRecievedRejectedOrder
+    };
+};
+
+export const fetchAllRecievedRejectedOrderUser = () =>{
+       
+    return async function (dispatch) {
+        dispatch(fetchAllRecievedRejectedOrderUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/getAllRejectedOrder',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;    
+                let payload=[]
+                console.log('action creators',result)
+            
+                result.data.map((res)=>{
+                   
+                    if(res.orders_rejected.length>0){
+                      
+                        res.orders_rejected.map((result2)=>  {
+                            payload=[...payload,{...result2,
+                                service:res,
+                            }]
+                     
+                    });
+                }});
+               
+               
+              
+
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllRecievedRejectedOrderUserSuccess(payload));
+              
+                }
+              
+               
+                       
+                
+        }catch(errorRecievedRejectedOrder){
+                  
+                dispatch(fetchAllRecievedRejectedOrderUserFailure(errorRecievedRejectedOrder.response.data));
+                
+        }
+    };
+};
+
+//////////////GET ALL RECEIVED ACCEPTED ORDER /////////////
+
+const fetchAllRecievedAcceptedOrderUserRequest = () =>{
+    return{
+        type: GET_RECEIVED_ORDER_ACCEPTED_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllRecievedAcceptedOrderUserSuccess = (receivedAcceptedOrderData) =>{
+    
+    return{
+        type: GET_RECEIVED_ORDER_ACCEPTED_SUCCESS_USER,
+        payload: {
+            receivedAcceptedOrderData
+        }
+    };
+};
+
+const fetchAllRecievedAcceptedOrderUserFailure = (errorRecievedAcceptedOrder) =>{
+    return {
+        type: GET_RECEIVED_ORDER_ACCEPTED_FAILED_USER,
+        payload:errorRecievedAcceptedOrder
+    };
+};
+
+export const fetchAllRecievedAcceptedOrderUser = () =>{
+       
+    return async function (dispatch) {
+        dispatch(fetchAllRecievedAcceptedOrderUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/getAllAcceptedOrder',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;    
+                let payload=[]
+
+            
+                result.data.map((res)=>{
+                   
+                    if(res.orders_accepted.length>0){
+                      
+                        res.orders_accepted.map((result2)=>  {
+                            payload=[...payload,{...result2,
+                                service:res,
+                            }]
+                     
+                    });
+                }});
+                console.log('AACCEPTED PAYLAD',payload)
+               
+              
+
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllRecievedAcceptedOrderUserSuccess(payload));
+              
+                }
+              
+               
+                       
+                
+        }catch(errorRecievedAcceptedOrder){
+           
+                dispatch(fetchAllRecievedAcceptedOrderUserFailure(errorRecievedAcceptedOrder.response.data));
+                
+        }
+    };
+};
+
+//////////////GET ALL RECEIVED  PENDING ORDER /////////////
+
+const fetchAllRecievedPendingOrderUserRequest = () =>{
+    return{
+        type: GET_RECEIVED_ORDER_PENDING_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllRecievedPendingOrderUserSuccess = (receivedPendingOrderData) =>{
+    
+    return{
+        type: GET_RECEIVED_ORDER_PENDING_SUCCESS_USER,
+        payload: {
+            receivedPendingOrderData
+        }
+    };
+};
+
+const fetchAllRecievedPendingOrderUserFailure = (errorRecievedPendingOrder) =>{
+    return {
+        type: GET_RECEIVED_ORDER_PENDING_FAILED_USER,
+        payload:errorRecievedPendingOrder
+    };
+};
+
+export const fetchAllRecievedPendingOrderUser = () =>{
+       
+    return async function (dispatch) {
+        dispatch(fetchAllRecievedPendingOrderUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/getAllPendingOrder',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;    
+                let payload=[]
+
+            
+                result.data.map((res)=>{
+                   
+                    if(res.orders_pending.length>0){
+                      
+                        res.orders_pending.map((result2)=>  {
+                            payload=[...payload,{...result2,
+                                service:res,
+                            }]
+                     
+                    });
+                }});
+
+               
+              
+
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllRecievedPendingOrderUserSuccess(payload));
+              
+                }
+              
+               
+                       
+                
+        }catch(errorRecievedPendingOrder){
+           
+                dispatch(fetchAllRecievedPendingOrderUserFailure(errorRecievedPendingOrder.response.data));
+                
+        }
+    };
+};
+
+///////////////GET ALL MY REJECTED ORDER /////////
+
+const fetchAllMyRejectedOrderUserRequest = () =>{
+    return{
+        type: GET_MY_ORDER_REJECTED_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllMyRejectedOrderUserSucces = (myRejectedOrderData) =>{
+    
+    return{
+        type: GET_MY_ORDER_REJECTED_SUCCESS_USER,
+        payload: {
+            myRejectedOrderData
+        }
+    };
+};
+
+const fetchAllMyRejectedOrderUserFailure = (errorMyRejectedOrder) =>{
+    return {
+        type: GET_MY_ORDER_REJECTED_FAILED_USER,
+        payload:errorMyRejectedOrder
+    };
+};
+
+export const fetchAllMyRejectedOrderUser = () =>{
+       
+    return async function (dispatch) {
+        dispatch(fetchAllMyRejectedOrderUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/myOrdersRejected',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;         
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllMyRejectedOrderUserSucces(result));
+              
+                }
+              
+               
+                       
+                
+        }catch(errorMyRejectedOrder){
+           
+                dispatch(fetchAllMyRejectedOrderUserFailure(errorMyRejectedOrder.response.data));
+                
+        }
+    };
+};
+
+
+///////////////GET ALL MY ACCEPTED ORDER ////////////////////
+
+const fetchAllMyAcceptedOrderUserRequest = () =>{
+    return{
+        type: GET_MY_ORDER_ACCEPTED_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllMyAcceptedOrderUserSucces = (myAcceptedOrderData) =>{
+    
+    return{
+        type: GET_MY_ORDER_ACCEPTED_SUCCESS_USER,
+        payload: {
+            myAcceptedOrderData
+        }
+    };
+};
+
+const fetchAllMyAcceptedOrderUserFailure = (errorMyAcceptedOrder) =>{
+    return {
+        type: GET_MY_ORDER_ACCEPTED_FAILED_USER,
+        payload:errorMyAcceptedOrder
+    };
+};
+
+export const fetchAllMyAcceptedOrderUser = () =>{
+       
+    return async function (dispatch) {
+        dispatch(fetchAllMyAcceptedOrderUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/myOrdersAccepted',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;         
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllMyAcceptedOrderUserSucces(result));
+              
+                }
+              
+               
+                       
+                
+        }catch(errorMyAcceptedOrder){
+           
+                dispatch(fetchAllMyAcceptedOrderUserFailure(errorMyAcceptedOrder.response.data));
+                
+        }
+    };
+};
 
 ///////////////GET ALL MY PENDING ORDER /////////
 
@@ -646,7 +1236,7 @@ const postOrderUserRequest = () =>{
 };
 
 const postOrderUserSuccess = (postOrderData) =>{
-    console.log('postOrderData',postOrderData)
+   
     return{
         type: POST_ORDER_SUCCESS_USER,
         payload: {
@@ -679,7 +1269,7 @@ export const postOrder =  (OrderData) =>{
            
         );
         const datas = response.data;
-        console.log('response',response.data)
+       
         if(response && response.data && response.data.message && response.data.message==="You must be logged in"){  
             dispatch(signOutUser())
         }
@@ -690,7 +1280,7 @@ export const postOrder =  (OrderData) =>{
         }
                         
     }catch(postOrderError){
-       console.log('postOrderError',postOrderError.response.data)
+  
         dispatch(postOrderUserFailure(postOrderError.response.data));
     }
      
@@ -740,7 +1330,7 @@ export const createService =  (postService) =>{
            
         );
         const data = response.data;
-        console.log(data)
+    
         if(response.data.message==="You must be logged in"){  
             dispatch(signOutUser())
         }
@@ -767,7 +1357,7 @@ export const  emptySubcategory = ()=>{
 }
 
 const fectchSubcategoryByCategoryIDRequest = () =>{
-    console.log('test')
+
     return{
         type: GET_SUBCATEGORY_BY_CATEGORY_ID_REQUEST_USER,
     };
@@ -791,7 +1381,7 @@ const fectchSubcategoryByCategoryIDFailure = (fetchSubCategoryDataUsererror) =>{
 };
 
 export const fetchSubcategoryByCategoryID =  (category_id) =>{
-    console.log("fetchSubcategoryByCategoryID",category_id);
+  
     return async function (dispatch) {
 
         dispatch(fectchSubcategoryByCategoryIDRequest());
@@ -1359,7 +1949,7 @@ export const fetchAllDataGuest = (payload) =>{
                }});
 /////////you get sub and services//////////////
                 
-                console.log('payload',payload)
+         
               
                 dispatch({type:ACCEPTED_SERVICES,payload})
                 dispatch(fetchAllDataGuestSuccess(result));
@@ -1423,5 +2013,57 @@ export const fetchIllustratorDataGuest = (payload) =>{
                 dispatch(fetchIlllustratorGuestFailure(errorDataGuest.response.data));
                 
         }
+    };
+};
+
+////////////GET COMMENTS ////////////////////////
+const getCommentsRequestGuest = () =>{
+    
+    return{
+        type: GET_COMMENT_REQUEST_GUEST,
+    };
+};
+
+const getCommentsSuccessGuest = (commentsData) =>{
+    console.log('commentsData',commentsData)
+    return{
+        type: GET_COMMENT_SUCCESS_GUEST,
+        payload: 
+        commentsData
+        
+    };
+};
+
+const getCommentsFailedGuest = (ErrorGetComments) =>{
+   
+    return {
+        type: GET_COMMENT_FAILED_GUEST,
+        payload:ErrorGetComments
+    };
+};
+
+export const getCommentsGuest =  (service_id) =>{
+  
+    return async function (dispatch) {
+
+        dispatch(getCommentsRequestGuest());
+    try{
+       const response = await axios({
+            method:"get",
+            url: URL_Guest +`/getComments/${service_id}`,
+         
+        });
+
+        const data = response.data;
+        
+        dispatch(getCommentsSuccessGuest(data));
+
+        
+                        
+    }catch(ErrorGetComments){
+     
+        dispatch(getCommentsFailedGuest(ErrorGetComments.response.data));
+    }
+     
     };
 };

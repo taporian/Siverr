@@ -67,7 +67,7 @@ console.log('order service',service);
                    <ErrorPForm>{errors.description_order?.message}</ErrorPForm> 
                    <ErrorPForm>{postOrderError && postOrderError.message_sent}</ErrorPForm> 
                     </div>
-                    <input type='submit' value='Order' />
+                    <input type='submit' value='Order' className='contact-seller-button' />
                     </form>
                     </div>
                     

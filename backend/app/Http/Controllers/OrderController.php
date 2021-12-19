@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AcceptOrderValidator;
 use App\Http\Requests\ContactSellerValidator;
 use App\Http\Requests\OrderValidator;
 use App\Models\Message;
@@ -160,7 +161,7 @@ class OrderController extends Controller
 
     public function getAllPendingOrder(): JsonResponse
     {
-        $room = Service::where('user_id',auth('user')->user()->id)->with('ordersPending')->get();
+        $room = Service::where('user_id',auth('user')->user()->id)->with('ordersPending.users')->get();
         $arr=[];
         foreach($room as $roomKey => $roo) {
             if( !isset($roo->ordersPending) || sizeof($roo->ordersPending)==0  ){
@@ -174,10 +175,21 @@ class OrderController extends Controller
 
 
 
-        return response()->json([
-            'size'=>sizeof($room),
-           'data'=>$room
-       ],200);
+
+        if(sizeof($room)!==0){
+            return response()->json([
+                'size'=>sizeof($room),
+                'data'=>$room
+
+            ],200);
+        }
+        else
+        {
+            return response()->json([
+
+                'message'=>'You have no orders on pending'
+            ],400);
+        }
    }
 
     /**
@@ -186,7 +198,7 @@ class OrderController extends Controller
 
     public function getAllAcceptedOrder(): JsonResponse
     {
-        $acceptedOrder = Service::where('user_id',auth('user')->user()->id)->with('ordersAccepted')->get();
+        $acceptedOrder = Service::where('user_id',auth('user')->user()->id)->with('ordersAccepted.users')->get();
         $arr=[];
         foreach($acceptedOrder as $roomKey => $roo) {
             if( !isset($roo->ordersAccepted) || sizeof($roo->ordersAccepted)==0  ){
@@ -200,10 +212,20 @@ class OrderController extends Controller
 
 
 
-        return response()->json([
-            'size'=>sizeof($acceptedOrder),
-            'data'=>$acceptedOrder
-        ],200);
+        if(sizeof($acceptedOrder)!==0){
+            return response()->json([
+                'size'=>sizeof($acceptedOrder),
+                'data'=>$acceptedOrder
+
+            ],200);
+        }
+        else
+        {
+            return response()->json([
+
+                'message'=>'You don\'t have any accepted any orders'
+            ],400);
+        }
     }
 
     /**
@@ -211,7 +233,7 @@ class OrderController extends Controller
      */
     public function getAllRejectedOrder(): JsonResponse
     {
-        $rejectedOrder = Service::where('user_id',auth('user')->user()->id)->with('ordersRejected')->get();
+        $rejectedOrder = Service::where('user_id',auth('user')->user()->id)->with('ordersRejected.users')->get();
         $arr=[];
         foreach($rejectedOrder as $roomKey => $roo) {
             if( !isset($roo->ordersRejected) || sizeof($roo->ordersRejected)==0  ){
@@ -223,23 +245,33 @@ class OrderController extends Controller
             array_splice($rejectedOrder, $ar - $arkey, 1);
         }
 
+        if(sizeof($rejectedOrder)!==0){
+            return response()->json([
+                'size'=>sizeof($rejectedOrder),
+                'data'=>$rejectedOrder
+            ],200);
+        }
+        else
+        {
+            return response()->json([
+
+                'message'=>'You haven\'t rejected any orders'
+            ],400);
+        }
 
 
-        return response()->json([
-            'size'=>sizeof($rejectedOrder),
-            'data'=>$rejectedOrder
-        ],200);
     }
 
     /**
      * @param $id
      * @return JsonResponse
      */
-    public function acceptOrder($id): JsonResponse
+    public function acceptOrder(AcceptOrderValidator $request): JsonResponse
     {
-
-        $order = Order::where("id",$id)->first();
+        $inputs = $request->all();
+        $order = Order::where("id",$inputs['id'])->first();
         $order->status_order = 1;
+        $order->price = $inputs['price'];
 
         if($order->save()){
             return response()->json([
@@ -286,7 +318,7 @@ class OrderController extends Controller
 public function myOrdersPending(): JsonResponse
 {
         $myOrdersPending = Order::where([['user_id',auth('user')->user()->id],['status_order',0]])->with('services.user')->get();
-        if($myOrdersPending)
+        if(sizeof($myOrdersPending) !== 0)
         {
             return response()->json([
 
@@ -305,7 +337,7 @@ public function myOrdersPending(): JsonResponse
     public function myOrdersAccepted(): JsonResponse
     {
         $myOrdersAccepted = Order::where([['user_id',auth('user')->user()->id],['status_order',1]])->with('services.user')->get();
-        if($myOrdersAccepted)
+        if(sizeof($myOrdersAccepted) !==0)
         {
             return response()->json([
 
@@ -323,7 +355,7 @@ public function myOrdersPending(): JsonResponse
     public function myOrdersRejected(): JsonResponse
     {
         $myOrdersRejected = Order::where([['user_id',auth('user')->user()->id],['status_order',2]])->with('services.user')->get();
-        if($myOrdersRejected)
+        if(sizeof($myOrdersRejected) !==0)
         {
             return response()->json([
 

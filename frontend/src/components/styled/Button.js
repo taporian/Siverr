@@ -105,3 +105,20 @@ margin-top:2.2rem;
       }
 
 `
+
+export const StyledButton = styled.button`
+width: 3rem;
+height: 3rem;
+font-weight:bold;
+border-radius: 50%;
+background-color:${(props)=>props.backgroundColor};
+	
+	
+&:hover {
+    background-color:#f73838;
+    background-color:${(props)=>props.backgroundColorOnHover};
+    label {
+        color:black
+    }
+}
+`

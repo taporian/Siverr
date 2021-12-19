@@ -1,13 +1,14 @@
-import React from 'react'
-
+import React from 'react';
+import './select.css';
 export default function Select({isDisabled,children,...rest}) {
     return (
         <>
           {isDisabled?
-          <select {...rest} disabled>
+          <select className='select-comp' {...rest} disabled>
               {children}
           </select>:
-          <select {...rest}>
+          
+          <select className='select-comp'  {...rest}>
           {children}
       </select>
           }  

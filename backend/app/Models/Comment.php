@@ -10,7 +10,7 @@ class Comment extends Model
     use HasFactory;
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
     public function services(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

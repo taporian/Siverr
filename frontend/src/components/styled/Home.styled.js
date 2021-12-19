@@ -56,6 +56,7 @@ export const BoxTitle = styled.h3`
   margin-left:4.5rem;
   margin-bottom:0;
   font-family:"arial";
+  
 
   
   @media (min-width: 1024px) {

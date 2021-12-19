@@ -56,4 +56,31 @@ class CommentController extends Controller
         }
         }
 
+    /**
+     * @param $id
+     */
+        public function getComments($id)
+        {
+            $getComment = Comment::where('service_id',$id)->with('users')->get();
+            $collect = $getComment->pluck('rating');
+            $count = count($collect);
+            $collect =collect($collect)->average();
+            $collect =round($collect, 1);
+            if(sizeof($getComment) !==0)
+            {
+                return response()->json([
+                    'data'=>$getComment,
+                    'average'=>$collect,
+                    'count'=>$count
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'message'=>'This Service doesn\'t have any comments',
+                     'average'=>0,
+                    'count'=>0
+                ],400);
+            }
+        }
+
 }

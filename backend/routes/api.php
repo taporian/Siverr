@@ -48,6 +48,7 @@ Route::resource('categories','App\Http\Controllers\CategoryController')->only(['
 Route::resource('subcategories','App\Http\Controllers\SubCategoryController')->only(['index']);
 Route::get('/getCategory/{id}', ['App\Http\Controllers\CategoryController', 'getCategory']);
 Route::get('/paginateServiceSubcategory',['App\Http\Controllers\PaginateController', 'paginateServiceSubcategory12']);
+Route::get('/getComments/{id}',['App\Http\Controllers\CommentController', 'getComments']);
 //////////////////USER ROUTES////////////////////////////////////////////
 Route::group(['prefix' => 'users'], function() {
 
@@ -59,9 +60,9 @@ Route::group(['prefix' => 'users'], function() {
         Route::delete('/delete/{id}', ['App\Http\Controllers\UserController', 'destroy']);
         Route::put('/update/{id}', ['App\Http\Controllers\UserController', 'update']);
         Route::resource('services','App\Http\Controllers\ServiceController')->only(['store','update']);
-        Route::get('/getServicePending/{id}', ['App\Http\Controllers\ServiceController', 'getServicePendingByUserID']);
-        Route::get('/getServiceAccepted/{id}', ['App\Http\Controllers\ServiceController', 'getServiceAcceptedByUserID']);
-        Route::get('/getServiceRejected/{id}', ['App\Http\Controllers\ServiceController', 'getServiceRejectedByUserID']);
+        Route::get('/getServicePending', ['App\Http\Controllers\ServiceController', 'getServicePendingByUserID']);
+        Route::get('/getServiceAccepted', ['App\Http\Controllers\ServiceController', 'getServiceAcceptedByUserID']);
+        Route::get('/getServiceRejected', ['App\Http\Controllers\ServiceController', 'getServiceRejectedByUserID']);
         Route::get('/getAllAcceptedCategory', ['App\Http\Controllers\CategoryController', 'getAllAcceptedCategory']);
         Route::get('/getAllPendingCategory', ['App\Http\Controllers\CategoryController', 'getAllPendingCategory']);
         Route::get('/getSubcategoryByCategoryId/{id}', ['App\Http\Controllers\SubCategoryController', 'getSubcategoryByCategoryId']);
@@ -75,7 +76,7 @@ Route::group(['prefix' => 'users'], function() {
         Route::get('/getAllPendingOrder',['App\Http\Controllers\OrderController', 'getAllPendingOrder']);
         Route::get('/getAllAcceptedOrder',['App\Http\Controllers\OrderController', 'getAllAcceptedOrder']);
         Route::get('/getAllRejectedOrder',['App\Http\Controllers\OrderController', 'getAllRejectedOrder']);
-        Route::put('/acceptOrder/{id}',['App\Http\Controllers\OrderController', 'acceptOrder']);
+        Route::put('/acceptOrder',['App\Http\Controllers\OrderController', 'acceptOrder']);
         Route::put('/rejectOrder/{id}',['App\Http\Controllers\OrderController', 'rejectOrder']);
         Route::get('/myOrdersPending',['App\Http\Controllers\OrderController', 'myOrdersPending']);
         Route::get('/myOrdersAccepted',['App\Http\Controllers\OrderController', 'myOrdersAccepted']);

@@ -190,9 +190,9 @@ public function update(ServiceUpdateValidator $request, int $id)
      * @return JsonResponse
      */
 
- public function getServicePendingByUserID(int $id): JsonResponse
+ public function getServicePendingByUserID(): JsonResponse
  {
-        $servicePending =  Service::where([['user_id',$id ], [ 'status_service','=','0']])->get();
+        $servicePending =  Service::where([['user_id',auth('user')->user()->id ], [ 'status_service','=','0'],['reason_for_rejection',null]])->get();
         if(!$servicePending->isEmpty())
         {
             return response()->json([
@@ -202,7 +202,7 @@ public function update(ServiceUpdateValidator $request, int $id)
         else{
             return response()->json([
                 "message"=>"No Service Pending"
-            ],200);
+            ],400);
         }
 }
 
@@ -210,9 +210,9 @@ public function update(ServiceUpdateValidator $request, int $id)
      * @param int $id
      * @return JsonResponse
      */
-    public function getServiceAcceptedByUserID(int $id): JsonResponse
+    public function getServiceAcceptedByUserID(): JsonResponse
     {
-        $serviceAccepted =  Service::where([['user_id',$id ], [ 'status_service','=','1']])->get();
+        $serviceAccepted =  Service::where([['user_id',auth('user')->user()->id ], [ 'status_service','=','1']])->get();
         if(!$serviceAccepted->isEmpty())
         {
             return response()->json([
@@ -222,7 +222,7 @@ public function update(ServiceUpdateValidator $request, int $id)
         else{
             return response()->json([
                 "message"=>"No Service Accepted"
-            ],200);
+            ],400);
         }
     }
 
@@ -230,9 +230,9 @@ public function update(ServiceUpdateValidator $request, int $id)
      * @param int $id
      * @return JsonResponse
      */
-    public function getServiceRejectedByUserID(int $id): JsonResponse
+    public function getServiceRejectedByUserID(): JsonResponse
     {
-        $servicePending =  Service::where([['user_id',$id ], [ 'status_service','=','0'],['reason_for_rejection','!=','null']])->get();
+        $servicePending =  Service::where([['user_id',auth('user')->user()->id ], [ 'status_service','=','0'],['reason_for_rejection','!=','null']])->get();
         if(!$servicePending->isEmpty())
         {
             return response()->json([
@@ -242,7 +242,7 @@ public function update(ServiceUpdateValidator $request, int $id)
         else{
             return response()->json([
                 "message"=>"No Service Rejected"
-            ],200);
+            ],400);
         }
     }
 

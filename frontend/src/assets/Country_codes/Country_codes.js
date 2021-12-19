@@ -12,7 +12,7 @@ export default function Country_codes({handleChangeCode}) {
     return (
         <div>  
                      
-<select style={{'width':'100&'}}  onChange={(event) => { handleChangeCode(event.target.value) }} id="country-code" name="country-code">   
+<select className='select-comp' style={{'margin-bottom':'1rem'}}  onChange={(event) => { handleChangeCode(event.target.value) }} id="country-code" name="country-code">   
 
 <option>Country</option>
 

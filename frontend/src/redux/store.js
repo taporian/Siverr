@@ -19,6 +19,15 @@ import {authenticationReducer,
   contactSellerReducer,
   postOrderReducer,
   fetchAllMyPendingOrderUserReducer,
+  fetchAllMyAcceptedOrderUserReducer,
+  fetchAllMyRejectedOrderUserReducer,
+  fetchAllRecievedPendingOrderUserReducer,
+  fetchAllRecievedAcceptedOrderUserReducer,
+  fetchAllRecievedRejectedOrderUserReducer,
+  acceptOrderUserReducer,
+  rejectOrderUserReducer,
+  getCommentsGuestReducer,
+  postCommentUserReducer,
 } from "./reducer";
 
 const createRootReducer = () =>
@@ -40,6 +49,15 @@ combineReducers({
   contactSellerReducer,
   postOrderReducer,
   fetchAllMyPendingOrderUserReducer,
+  fetchAllMyAcceptedOrderUserReducer,
+  fetchAllMyRejectedOrderUserReducer,
+  fetchAllRecievedPendingOrderUserReducer,
+  fetchAllRecievedAcceptedOrderUserReducer,
+  fetchAllRecievedRejectedOrderUserReducer,
+  acceptOrderUserReducer,
+  rejectOrderUserReducer,
+  getCommentsGuestReducer,
+  postCommentUserReducer,
 });
 
 const initState = {
@@ -130,7 +148,64 @@ const initState = {
       loading:false,
       myPendingOrderData:[],
       errorMyPendingOrder:"",
+    },
+    fetchAllMyAcceptedOrderUserReducer:
+    {
+      loading:false,
+      myAcceptedOrderData:[],
+      errorMyAcceptedOrder:"",
+    },
+    fetchAllMyRejectedOrderUserReducer:
+    {
+      loading:false,
+      myRejectedOrderData:[],
+      errorMyRejectedOrder:"",
+    },
+
+    fetchAllRecievedPendingOrderUserReducer:
+    {
+      loading:false,
+      receivedPendingOrderData:[],
+      errorRecievedPendingOrder:"",
+    },
+    fetchAllRecievedAcceptedOrderUserReducer:
+    {
+      loading:false,
+      receivedAcceptedOrderData:[],
+      errorRecievedAcceptedOrder:""
+    
+    },
+    fetchAllRecievedRejectedOrderUserReducer:
+    {
+      loading:false,
+      errorRecievedRejectedOrder:"",
+      receivedRejectedOrderData:[],
+    },
+    acceptOrderUserReducer:
+    {loading:false,
+      acceptOrderData:[],
+      ErroracceptOrder:"",
+    },
+    rejectOrderUserReducer:{
+      loading:false,
+      rejectOrderData:[],
+      ErrorRejectOrder:"",
+    },
+    getCommentsGuestReducer:
+    {
+      loading:false,
+      commentsData:[],
+      ErrorGetComments:"",
+    },
+    postCommentUserReducer:
+    {  loading:false,
+      ErrorComment:"",    
+      commentData:[],
     }
+
+ 
+   
+
   
     
   
