@@ -63,6 +63,8 @@ export default function Service() {
            {commentsData && commentsData.data ?
              <div className='service-left-average'>
            <h6 className='service-left-h6'>
+           {/* //if i remove this the stars won't work */}
+               {!commentsData && commentsData.average} 
                {<ReactStars  value={commentsData?.average} isHalf={true} activeColor="#FFB33D" edit={false}/> } <span style={{'color':'#FFB33D'}}>{commentsData?.average}</span> {'('+commentsData?.count+')'} </h6> 
         
            </div>

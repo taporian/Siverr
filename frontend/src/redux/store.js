@@ -28,6 +28,9 @@ import {authenticationReducer,
   rejectOrderUserReducer,
   getCommentsGuestReducer,
   postCommentUserReducer,
+  fetchAllMyPendingServiceUserReducer,
+  fetchAllMyAcceptedServiceUserReducer,
+  fetchAllMyRejectedServiceUserReducer,
 } from "./reducer";
 
 const createRootReducer = () =>
@@ -58,6 +61,9 @@ combineReducers({
   rejectOrderUserReducer,
   getCommentsGuestReducer,
   postCommentUserReducer,
+  fetchAllMyPendingServiceUserReducer,
+  fetchAllMyAcceptedServiceUserReducer,
+  fetchAllMyRejectedServiceUserReducer,
 });
 
 const initState = {
@@ -201,6 +207,26 @@ const initState = {
     {  loading:false,
       ErrorComment:"",    
       commentData:[],
+    },
+    fetchAllMyPendingServiceUserReducer:
+    {
+      loading:false,
+      errorMyServicePending:"",       
+      myServicePendingData:[],
+    },
+    fetchAllMyAcceptedServiceUserReducer:
+    {
+      loading:false,
+      errorMyServiceAccepted:"",       
+      myServiceAcceptedData:[],
+
+    },
+
+    fetchAllMyRejectedServiceUserReducer:
+    {
+      loading:false,
+      errorMyServiceRejected:"",       
+       myServiceRejectedData:[],
     }
 
  

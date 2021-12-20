@@ -6,7 +6,7 @@ export default function DropdownCustom() {
     return (
         <>
             <div id="container-dropdown">
-    <nav className='nav-dropdown'style={{'border-top':'1px solid #e4e5e7','border-bottom':'1px solid #e4e5e7','width':'100%'}}>
+    <nav className='nav-dropdown'style={{'borderTop':'1px solid #e4e5e7','borderBottom':'1px solid #e4e5e7','width':'100%'}}>
         <ul className='ul-dropdown'>
             {guestData && guestData.guestData && guestData.guestData.map(guest=>(
 

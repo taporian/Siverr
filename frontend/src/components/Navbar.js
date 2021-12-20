@@ -70,21 +70,6 @@ const Navbar = () => {
     </Nav>
   
 
-  
-     {/* <Nav>    */}
-      
-    {/* <Menu style={{'border-top':'1px solid #e4e5e7','border-bottom':'1px solid #e4e5e7','width':'100%'}}>    
-  {console.log('guestData',guestData)}
-      {
-      guestData && guestData.guestData && guestData.guestData.map(guest=>(
-      
-         
-        <MenuLinkRoute  href={`/${guest.name.replace(/\s+/g, '-')}`}>{guest.name}</MenuLinkRoute>
-       
-       
-      ))}    
-      </Menu> */}
-   {/* </Nav> */}
 
    
    </>

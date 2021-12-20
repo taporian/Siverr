@@ -3,7 +3,7 @@ import {MdOutlinePendingActions} from "react-icons/md";
 import { BsCheckLg } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
 import { useSelector } from 'react-redux';
-export default function SubMenuDashboard({handlePendingData,handleAcceptedData,handleRejecteddData,handleRecievedPendingData,handleRecievedAcceptedData,handleRecievedRejectedData}) {
+export default function SubMenuDashboard({handlePendingData,handleAcceptedData,handleRejecteddData,handleRecievedPendingData,handleRecievedAcceptedData,handleRecievedRejectedData,handleServicePendingData,handleServiceAcceptedData,handleServiceRejectedData}) {
   
 
     const  {  errorMyPendingOrder,myPendingOrderData } = useSelector((state) =>  state.fetchAllMyPendingOrderUserReducer);
@@ -25,6 +25,10 @@ export default function SubMenuDashboard({handlePendingData,handleAcceptedData,h
                handleRecievedPendingData('');
                handleRecievedAcceptedData('');
                handleRecievedRejectedData('');
+
+               handleServicePendingData('');
+               handleServiceAcceptedData('');
+               handleServiceRejectedData('');
             }}
            >
            <MdOutlinePendingActions className="icons-dashboard"/><em className='em-user-dashboard'>Pending</em>
@@ -41,6 +45,10 @@ export default function SubMenuDashboard({handlePendingData,handleAcceptedData,h
             handleRecievedPendingData('');
             handleRecievedAcceptedData('');
             handleRecievedRejectedData('');
+
+            handleServicePendingData('');
+            handleServiceAcceptedData('');
+            handleServiceRejectedData('');
         }}
         >
         <BsCheckLg className="icons-dashboard"/><em className='em-user-dashboard'>Accepted</em>
@@ -57,6 +65,10 @@ export default function SubMenuDashboard({handlePendingData,handleAcceptedData,h
             handleRecievedPendingData('');
             handleRecievedAcceptedData('');
             handleRecievedRejectedData('');
+
+            handleServicePendingData('');
+            handleServiceAcceptedData('');
+            handleServiceRejectedData('');
         }}
         
         >

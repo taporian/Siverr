@@ -44,10 +44,10 @@ export default function Footer() {
                         <p className='footer-ul'>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
                     </div>
                     <div className="col item social">
-                        <a href="#"><BsFacebook style={{'width':'2rem','height':'2rem','margin-bottom':'0.425rem','color':'#7b7d84'}}/></a>
-                        <a href="#"><AiFillTwitterCircle  style={{'width':'2.3rem','height':'2.3rem','margin-bottom':'0.425rem','color':'#7b7d84'}} /></a>
-                        <a href="#"><BsInstagram style={{'width':'2rem','height':'2rem','margin-bottom':'0.425rem','color':'#7b7d84'}}/></a>
-                        <a href="#"><BsPinterest style={{'width':'2rem','height':'2rem','margin-bottom':'0.425rem','color':'#7b7d84'}}/></a></div>
+                        <a href="#"><BsFacebook style={{'width':'2rem','height':'2rem','marginBottom':'0.425rem','color':'#7b7d84'}}/></a>
+                        <a href="#"><AiFillTwitterCircle  style={{'width':'2.3rem','height':'2.3rem','marginBottom':'0.425rem','color':'#7b7d84'}} /></a>
+                        <a href="#"><BsInstagram style={{'width':'2rem','height':'2rem','marginBottom':'0.425rem','color':'#7b7d84'}}/></a>
+                        <a href="#"><BsPinterest style={{'width':'2rem','height':'2rem','marginBottom':'0.425rem','color':'#7b7d84'}}/></a></div>
                 </div>
                 <div className='copyright-container'> 
                 <LogoFooter >

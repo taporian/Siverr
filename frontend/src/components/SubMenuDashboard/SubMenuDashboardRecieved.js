@@ -4,7 +4,7 @@ import { BsCheckLg } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
 import { useSelector } from 'react-redux';
 export default function SubMenuDashboardRecieved({handleRecievedPendingData,handleRecievedAcceptedData,handleRecievedRejectedData,
-    handlePendingData,handleAcceptedData,handleRejecteddData}) {
+    handlePendingData,handleAcceptedData,handleRejecteddData,handleServicePendingData,handleServiceAcceptedData,handleServiceRejectedData}) {
   
       
 
@@ -27,7 +27,7 @@ export default function SubMenuDashboardRecieved({handleRecievedPendingData,hand
         <>
        
         <li>
-          {console.log('inssjs',receivedPendingOrderData)}
+         
            <div style={{'backgroundColor':'#7DCEA4'}} className="s-sidebar__nav-link a-user-dashboard"
            onClick={()=>{
 
@@ -38,6 +38,10 @@ export default function SubMenuDashboardRecieved({handleRecievedPendingData,hand
                handleAcceptedData('');
                handleRejecteddData('');
                handlePendingData('');
+
+               handleServicePendingData('');
+               handleServiceAcceptedData('');
+               handleServiceRejectedData('');
             }}
            >
            <MdOutlinePendingActions className="icons-dashboard"/><em className='em-user-dashboard'>Pending</em>
@@ -54,6 +58,10 @@ export default function SubMenuDashboardRecieved({handleRecievedPendingData,hand
                handleRecievedPendingData('');
                handleRecievedAcceptedData(receivedAcceptedOrderData,errorRecievedAcceptedOrder);
                handleRecievedRejectedData('');
+
+               handleServicePendingData('');
+               handleServiceAcceptedData('');
+               handleServiceRejectedData('');
         
         }}
         >
@@ -71,6 +79,10 @@ export default function SubMenuDashboardRecieved({handleRecievedPendingData,hand
             handleRecievedPendingData('');
             handleRecievedAcceptedData('');
             handleRecievedRejectedData(receivedRejectedOrderData,errorRecievedRejectedOrder);
+
+            handleServicePendingData('');
+            handleServiceAcceptedData('');
+            handleServiceRejectedData('');
         }}
         
         >

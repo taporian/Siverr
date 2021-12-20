@@ -95,6 +95,18 @@ import{
     POST_COMMENT_SUCCESS_USER,
     POST_COMMENT_FAILED_USER,
 
+    GET_MY_SERVICE_PENDING_REQUEST_USER,
+    GET_MY_SERVICE_PENDING_SUCCESS_USER,
+    GET_MY_SERVICE_PENDING_FAILED_USER,
+
+    GET_MY_SERVICE_ACCEPTED_REQUEST_USER,
+    GET_MY_SERVICE_ACCEPTED_SUCCESS_USER,
+    GET_MY_SERVICE_ACCEPTED_FAILED_USER,
+
+    GET_MY_SERVICE_REJECTED_REQUEST_USER,
+    GET_MY_SERVICE_REJECTED_SUCCESS_USER,
+    GET_MY_SERVICE_REJECTED_FAILED_USER,
+
     ACCEPTED,
     REJECTED,
     PENDING,
@@ -200,6 +212,13 @@ const iniState ={
       ErrorGetComments:"",
       ErrorComment:"",    
       commentData:[],
+      errorMyServicePending:"",
+      myServicePendingData:[],
+      errorMyServiceAccepted:"",       
+        myServiceAcceptedData:[],
+        errorMyServiceRejected:"",
+        myServiceRejectedData:[],
+
      
 
 
@@ -411,6 +430,96 @@ export const fetchAllPendingServiceReducer = (state=iniState,action) =>{
 }
 
 ///////////////////////////USER ////////////////////////////////////////////////////////////////////////////
+
+//////////GET ALL MY SERVICE REJECTED////////////////
+
+export const fetchAllMyRejectedServiceUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_MY_SERVICE_REJECTED_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_MY_SERVICE_REJECTED_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                errorMyServiceRejected:null,       
+                myServiceRejectedData:action.payload
+            };
+        case GET_MY_SERVICE_REJECTED_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                errorMyServiceRejected: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+////////////GET ALL MY SERVICE ACCEPTED///////////
+
+export const fetchAllMyAcceptedServiceUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_MY_SERVICE_ACCEPTED_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_MY_SERVICE_ACCEPTED_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                errorMyServiceAccepted:null,       
+                myServiceAcceptedData:action.payload
+            };
+        case GET_MY_SERVICE_ACCEPTED_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                errorMyServiceAccepted: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+///////////GET ALL MY SERVICE PENDING////////
+
+export const fetchAllMyPendingServiceUserReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_MY_SERVICE_PENDING_REQUEST_USER:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_MY_SERVICE_PENDING_SUCCESS_USER:
+           
+            return{
+                ...state,
+                loading:false,
+                errorMyServicePending:null,       
+                myServicePendingData:action.payload
+            };
+        case GET_MY_SERVICE_PENDING_FAILED_USER:
+            return{
+                ...state,
+                loading:false,
+                errorMyServicePending: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
 
 //////////////POST COMMENT /////////////////////////
 

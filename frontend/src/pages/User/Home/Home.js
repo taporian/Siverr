@@ -78,23 +78,16 @@ const data = [
 
         {services && services.length>0 && services.map(guest => (
          
-          // <Box  key={guest.id}style={{'display':'flex','flex-wrap':'wrap','flex':'20%'}} >
+  
 
             <Homecard services={guest}/>
              
 
-          // </Box>
+      
           
         ))}
      
-       
-         
-        {/* {data.map(box => (
-          <Box key={box.id} bgColor={box.bgColor}>
-            <BoxTitle>{box.title}</BoxTitle>
-            <BoxText>{box.text}</BoxText>
-          </Box>
-        ))} */}
+     
        
       </Container>
     

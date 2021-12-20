@@ -3,7 +3,7 @@ import { Table } from '../TableUser'
 export default function RecivedOrderAcceptedList({recievedOrderAcceptedData,errorRecievedOrderAccepted}) {
     return (
        <>
-       {console.log('inside',errorRecievedOrderAccepted)}
+      
        {!errorRecievedOrderAccepted ?
        <Table key={0}>
    <Table.Head>

@@ -20,7 +20,7 @@ export default function RecivedOrderPendingList({recievedOrderPendingData,errorR
   
     return (
        <>
-       {console.log('inside',errorRecievedOrderPending)}
+      
        {!errorRecievedOrderPending ?
        <Table key={0} >
    <Table.Head>

@@ -108,6 +108,19 @@ import {
     POST_COMMENT_SUCCESS_USER,
     POST_COMMENT_FAILED_USER,
 
+    GET_MY_SERVICE_PENDING_REQUEST_USER,
+    GET_MY_SERVICE_PENDING_SUCCESS_USER,
+    GET_MY_SERVICE_PENDING_FAILED_USER,
+
+    GET_MY_SERVICE_ACCEPTED_REQUEST_USER,
+    GET_MY_SERVICE_ACCEPTED_SUCCESS_USER,
+    GET_MY_SERVICE_ACCEPTED_FAILED_USER,
+
+    GET_MY_SERVICE_REJECTED_REQUEST_USER,
+    GET_MY_SERVICE_REJECTED_SUCCESS_USER,
+    GET_MY_SERVICE_REJECTED_FAILED_USER,
+
+
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_REQUEST_GUEST,
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_SUCCESS_GUEST,
     GET_ALL_SUCATEGORY_CATEGORY_SERVICE_FAILED_GUEST,
@@ -609,6 +622,207 @@ export const signOutAdmin = (history) =>{
 }
 /////////////////////////USER///////////////////////////////////////////////////////////////////////////////////
 
+//////////////GET ALL MY SERVICE REJECTED///////////
+
+const fetchAllMyRejectedServiceUserRequest = () =>{
+    return{
+        type: GET_MY_SERVICE_REJECTED_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllMyRejectedServiceUserSuccess = (myServiceRejectedData) =>{
+    
+    return{
+        type: GET_MY_SERVICE_REJECTED_SUCCESS_USER,
+        payload: {
+            myServiceRejectedData
+        }
+    };
+};
+
+const fetchAllMyRejectedServiceUserFailure = (errorMyServiceRejected) =>{
+  
+    return {
+        type: GET_MY_SERVICE_REJECTED_FAILED_USER,
+        payload:errorMyServiceRejected
+    };
+};
+
+export const fetchAllMyRejectedServiceUser = () =>{
+   
+    return async function (dispatch) {
+    
+        dispatch(fetchAllMyRejectedServiceUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/getServiceRejected',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;   
+                 
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllMyRejectedServiceUserSuccess(result));
+              
+                }
+              
+               
+                       
+               
+        }catch(errorMyServiceAccepted){
+     
+          
+                dispatch(fetchAllMyRejectedServiceUserFailure(errorMyServiceAccepted.response.data));
+                
+        }
+    };
+};
+
+//////////////GET ALL MY SERVICE ACCEPTED///////////
+
+const fetchAllMyAcceptedServiceUserRequest = () =>{
+    return{
+        type: GET_MY_SERVICE_ACCEPTED_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllMyAcceptedServiceUserSuccess = (myServiceAcceptedData) =>{
+    
+    return{
+        type: GET_MY_SERVICE_ACCEPTED_SUCCESS_USER,
+        payload: {
+            myServiceAcceptedData
+        }
+    };
+};
+
+const fetchAllMyAcceptedServiceUserFailure = (errorMyServiceAccepted) =>{
+  
+    return {
+        type: GET_MY_SERVICE_ACCEPTED_FAILED_USER,
+        payload:errorMyServiceAccepted
+    };
+};
+
+export const fetchAllMyAcceptedServiceUser = () =>{
+   
+    return async function (dispatch) {
+        console.log('ehehehhe')   
+        dispatch(fetchAllMyAcceptedServiceUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/getServiceAccepted',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;   
+                 
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllMyAcceptedServiceUserSuccess(result));
+              
+                }
+              
+               
+                       
+               
+        }catch(errorMyServiceAccepted){
+     
+          
+                dispatch(fetchAllMyAcceptedServiceUserFailure(errorMyServiceAccepted.response.data));
+                
+        }
+    };
+};
+
+///////////////GET ALL MY SERVICE PENDING///////////
+
+const fetchAllMyPendingServiceUserRequest = () =>{
+    return{
+        type: GET_MY_SERVICE_PENDING_REQUEST_USER,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchAllMyPendingServiceUserSuccess = (myServicePendingData) =>{
+    
+    return{
+        type: GET_MY_SERVICE_PENDING_SUCCESS_USER,
+        payload: {
+            myServicePendingData
+        }
+    };
+};
+
+const fetchAllMyPendingServiceUserFailure = (errorMyServicePending) =>{
+  
+    return {
+        type: GET_MY_SERVICE_PENDING_FAILED_USER,
+        payload:errorMyServicePending
+    };
+};
+
+export const fetchAllMyPendingServiceUser = () =>{
+   
+    return async function (dispatch) {
+        console.log('ehehehhe')   
+        dispatch(fetchAllMyPendingServiceUserRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_User+'/getServicePending',
+                    headers:{
+                        "Accept":"application/json",
+                        Authorization:`Bearer ${localStorage.getItem("USER-TOKEN")}`
+                    }
+                                   
+                });                
+                const result = res.data;   
+                 
+                if(res.data.message==="You must be logged in"){  
+                    dispatch(signOutUser())
+                }
+                else{
+                       
+                    dispatch(fetchAllMyPendingServiceUserSuccess(result));
+              
+                }
+              
+               
+                       
+               
+        }catch(errorMyServicePending){
+     
+          
+                dispatch(fetchAllMyPendingServiceUserFailure(errorMyServicePending.response.data));
+                
+        }
+    };
+};
+
 
 ////////////POST COMMENT ////////////////////////
 const postCommentRequestUser = () =>{
@@ -838,7 +1052,7 @@ export const fetchAllRecievedRejectedOrderUser = () =>{
                 });                
                 const result = res.data;    
                 let payload=[]
-                console.log('action creators',result)
+              
             
                 result.data.map((res)=>{
                    
@@ -932,7 +1146,7 @@ export const fetchAllRecievedAcceptedOrderUser = () =>{
                      
                     });
                 }});
-                console.log('AACCEPTED PAYLAD',payload)
+            
                
               
 
@@ -1701,9 +1915,7 @@ export const signUpUser = (user,history) =>{
                    dispatch(signUpFailureUser(data));
                }
 
-            //    console.log(res);
-            //     dispatch(signUpSuccessUser(data));
-                // history.push('/');
+          
         }catch(error){
                    
             if(error.response && error.response.status ===400){
@@ -2025,7 +2237,7 @@ const getCommentsRequestGuest = () =>{
 };
 
 const getCommentsSuccessGuest = (commentsData) =>{
-    console.log('commentsData',commentsData)
+
     return{
         type: GET_COMMENT_SUCCESS_GUEST,
         payload: 
