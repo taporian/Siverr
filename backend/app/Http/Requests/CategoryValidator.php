@@ -24,7 +24,7 @@ class CategoryValidator extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'unique:categories', 'max:20'],
+            'name' => ['required', 'string', 'unique:categories', 'max:30'],
         ];
     }
 

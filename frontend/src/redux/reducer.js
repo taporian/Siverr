@@ -134,6 +134,10 @@ import{
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_SUCCESS_GUEST,
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_FAILED_GUEST, 
 
+    GET_ALL_SUB_VOICE_SERVICE_REQUEST_GUEST,
+    GET_ALL_SUB_VOICE_SERVICE_SUCCESS_GUEST,
+    GET_ALL_SUB_VOICE_SERVICE_FAILED_GUEST,
+
     GET_COMMENT_REQUEST_GUEST,
     GET_COMMENT_SUCCESS_GUEST,
     GET_COMMENT_FAILED_GUEST,
@@ -218,6 +222,9 @@ const iniState ={
         myServiceAcceptedData:[],
         errorMyServiceRejected:"",
         myServiceRejectedData:[],
+        guestVoiceData:[],
+        errorVoiceDataGuest:"",
+
 
      
 
@@ -1194,6 +1201,35 @@ export const fetchIllustratorDataGuestReducer = (state=iniState,action) =>{
                 ...state,
                 loading:false,
                 guestIllustratorData: action.payload
+            };
+            default:
+                return{...state};
+    }
+}
+
+//////////////////FETCH VOICE GUEST ////////////
+export const fetchVoiceGuestReducer = (state=iniState,action) =>{
+    switch(action.type){
+      
+        case GET_ALL_SUB_VOICE_SERVICE_REQUEST_GUEST:
+            return{
+                ...state,
+                loading:false,
+          
+            };
+        case GET_ALL_SUB_VOICE_SERVICE_SUCCESS_GUEST:
+           
+            return{
+                ...state,
+                loading:false,
+                errorVoiceDataGuest:null,       
+                guestVoiceData:action.payload
+            };
+        case GET_ALL_SUB_VOICE_SERVICE_FAILED_GUEST:
+            return{
+                ...state,
+                loading:false,
+                guestVoiceData: action.payload
             };
             default:
                 return{...state};

@@ -8,7 +8,7 @@ export default function Homecard({services}) {
     
     return (
         <>
-    {services.category.name !== "Graphics & Design" ?
+    {services.category.name !== "Graphics & Design" && services.category.name !== "Music & Audio" ?
 <div className="home-card">
     <div className="home-card-image-container">
   <img src={URL_Image+services.image} alt="Denim Jeans" className="home-card-image" />

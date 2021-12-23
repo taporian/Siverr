@@ -28,7 +28,10 @@ export default function Service() {
     
     useEffect(()=>{
         disptach(getCommentsGuest(id))
-    },[disptach])
+
+        
+    
+    },[])
 
    
 
@@ -50,6 +53,7 @@ export default function Service() {
 
    const  {  ErrorGetComments,commentsData } = useSelector((state) =>  state.getCommentsGuestReducer);
    const  {  ErrorComment } = useSelector((state) =>  state.postCommentUserReducer);
+
    
     return (
         <>
@@ -129,13 +133,14 @@ export default function Service() {
            
                <div className='inner-post-comment'>
                    <div className='service-star-container'>
-               
+             
                <ReactStars
                     value={rating}
                     count={5}
                     onChange={ratingChanged}
                     size={20}
                     isHalf={true}
+                    
                   
                          activeColor="#FFB33D"
                  />  
@@ -148,15 +153,16 @@ export default function Service() {
               
                 <button className='service-comment-button' onClick={()=>{
                          Setcomment("");
-                         setRating("");
+                         setRating('');
+                         disptach(getCommentsGuest(id))
                     disptach(postCommentUser({service_id:id,rating:rating,post:comment}))
                
                     }}>Post</button>
-                 {console.log('rating',rating,'comment',comment)}
+               
                 </div>
-          
+               
                 </div>
-              
+                
                 {commentsData && commentsData.data && commentsData?.data.map(comment=>(
                     <>
                     <hr style={{'width':'100%'}}/>
@@ -167,6 +173,9 @@ export default function Service() {
                ))}
                 <hr style={{'width':'100%'}}/>
            </div>
+           <div style={{'color':'red','fornt-size':'bolder'}}>
+                {ErrorComment && ErrorComment.message}
+                </div>
          
         </>
     ) 

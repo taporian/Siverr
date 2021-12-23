@@ -47,7 +47,8 @@ Route::group(['prefix' => 'admins'], function() {
 Route::resource('categories','App\Http\Controllers\CategoryController')->only(['index']);
 Route::resource('subcategories','App\Http\Controllers\SubCategoryController')->only(['index']);
 Route::get('/getCategory/{id}', ['App\Http\Controllers\CategoryController', 'getCategory']);
-Route::get('/paginateServiceSubcategory',['App\Http\Controllers\PaginateController', 'paginateServiceSubcategory12']);
+Route::get('/paginateServiceSubcategory',['App\Http\Controllers\PaginateController', 'paginateServiceSubcategory1']);
+Route::get('/paginateServiceSubcategory5',['App\Http\Controllers\PaginateController', 'paginateServiceSubcategory5']);
 Route::get('/getComments/{id}',['App\Http\Controllers\CommentController', 'getComments']);
 //////////////////USER ROUTES////////////////////////////////////////////
 Route::group(['prefix' => 'users'], function() {

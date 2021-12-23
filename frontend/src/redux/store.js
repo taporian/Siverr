@@ -31,6 +31,7 @@ import {authenticationReducer,
   fetchAllMyPendingServiceUserReducer,
   fetchAllMyAcceptedServiceUserReducer,
   fetchAllMyRejectedServiceUserReducer,
+  fetchVoiceGuestReducer,
 } from "./reducer";
 
 const createRootReducer = () =>
@@ -64,6 +65,7 @@ combineReducers({
   fetchAllMyPendingServiceUserReducer,
   fetchAllMyAcceptedServiceUserReducer,
   fetchAllMyRejectedServiceUserReducer,
+  fetchVoiceGuestReducer,
 });
 
 const initState = {
@@ -227,6 +229,13 @@ const initState = {
       loading:false,
       errorMyServiceRejected:"",       
        myServiceRejectedData:[],
+    },
+
+    fetchVoiceGuestReducer:
+    {
+      loading:false,
+      errorVoiceDataGuest:"",
+      guestVoiceData:[]
     }
 
  

@@ -54,7 +54,7 @@
   padding-top: 0.125rem;
   margin: 0.625rem;
   width: 18.75rem;
-  height: 1.563rem;
+  height: auto;
   border-radius: 0.625rem;
   font-weight: bolder;
   font-family: "Courier New", Courier, monospace;
@@ -69,7 +69,7 @@
   padding-left: 0.625rem;
   padding-top: 0.125rem;
   width: 18.75rem;
-  height: 1.563rem;
+  height: auto;
   border-radius: 0.625rem;
   margin: 0.625rem 0.625rem 0.625rem 75%;
 

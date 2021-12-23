@@ -26,7 +26,7 @@ class SubCategoryValidator extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['string', 'unique:subcategories', 'max:20'],
+            'name' => ['string', 'unique:subcategories', 'max:30'],
             'category_id' =>['required']
         ];
     }

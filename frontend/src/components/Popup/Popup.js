@@ -6,7 +6,7 @@ export default function Popup(props) {
         <div >
             <div className="popup">
                 <div className="popup-inner">
-                    <ButtonClose className="close-btn" onClick={()=> props.setTrigger(false)}>X</ButtonClose>
+                    <ButtonClose data-testid="buttonPopup" className="close-btn" onClick={()=> props.setTrigger(false)}>X</ButtonClose>
                     {props.children}
                     
                 </div>

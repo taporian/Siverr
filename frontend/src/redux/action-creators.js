@@ -130,6 +130,10 @@ import {
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_SUCCESS_GUEST,
     GET_ALL_SUB_ILLUSTRATOR_SERVICE_FAILED_GUEST, 
 
+    GET_ALL_SUB_VOICE_SERVICE_REQUEST_GUEST,
+    GET_ALL_SUB_VOICE_SERVICE_SUCCESS_GUEST,
+    GET_ALL_SUB_VOICE_SERVICE_FAILED_GUEST,
+
     GET_COMMENT_REQUEST_GUEST,
     GET_COMMENT_SUCCESS_GUEST,
     GET_COMMENT_FAILED_GUEST,
@@ -2277,5 +2281,57 @@ export const getCommentsGuest =  (service_id) =>{
         dispatch(getCommentsFailedGuest(ErrorGetComments.response.data));
     }
      
+    };
+};
+
+/////////////////FETCH VOICE GUEST ////////////////
+
+const fetchVoiceGuestRequest = () =>{
+    return{
+        type: GET_ALL_SUB_VOICE_SERVICE_REQUEST_GUEST,
+        payload: {
+            loading: true
+          }
+    };
+};
+
+const fetchVoiceGuestSuccess = (guestVoiceData) =>{
+    
+    return{
+        type: GET_ALL_SUB_VOICE_SERVICE_SUCCESS_GUEST,
+        payload: {
+            guestVoiceData
+        }
+    };
+};
+
+const fetchVoiceGuestFailure = (errorVoiceDataGuest) =>{
+    return {
+        type: GET_ALL_SUB_VOICE_SERVICE_FAILED_GUEST,
+        payload:errorVoiceDataGuest
+    };
+};
+
+export const fetchVoiceGuest = (payload) =>{
+       
+    return async function (dispatch) {
+        dispatch(fetchVoiceGuestRequest());
+        try{
+            const res = await axios({
+                    method:"get",
+                    url: URL_Guest+'/paginateServiceSubcategory5',
+                                   
+                });                
+                const result = res.data;         
+                
+              
+                dispatch(fetchVoiceGuestSuccess(result));
+                       
+                
+        }catch(errorVoiceDataGuest){
+           
+                dispatch(fetchVoiceGuestFailure(errorVoiceDataGuest.response.data));
+                
+        }
     };
 };

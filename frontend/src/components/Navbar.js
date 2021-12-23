@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { useDispatch } from "react-redux";
 import {  signOutUser } from "../redux/action-creators";
-import { fetchAllDataGuest,fetchIllustratorDataGuest } from "../redux/action-creators";
+import { fetchAllDataGuest,fetchIllustratorDataGuest,fetchVoiceGuest } from "../redux/action-creators";
 import {Nav,Logo,NavDropDown,Menu,MenuLink,DropButton} from './styled/Navbar.styled'
 import {GoPrimitiveDot} from 'react-icons/go'
 import DropdownCustom from "./Dropdown/DropdownCustom";
@@ -28,6 +28,7 @@ const Navbar = () => {
   useEffect(() => {
     dispatch(fetchAllDataGuest())
     dispatch(fetchIllustratorDataGuest(illustratorPage))
+    dispatch(fetchVoiceGuest())
   
   }, [dispatch]);
 
